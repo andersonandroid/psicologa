@@ -5,6 +5,9 @@ import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
+import terapiaCriancasImg from './assets/terapia-criancas-real.jpg'
+import terapiaIndividualImg from './assets/terapia-individual-real.jpg'
+import terapiaCasalImg from './assets/terapia-casal-real.jpg'
 import './App.css'
 
 function App() {
@@ -42,7 +45,7 @@ function App() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="font-serif text-2xl font-semibold text-foreground">
-              Dra. Michelle Pitangueira
+              Dra. Sofia Lopes
             </div>
             <nav className="hidden md:flex items-center space-x-8">
               <button 
@@ -97,7 +100,7 @@ function App() {
                   <span className="text-gradient"> cura e crescimento</span>
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Sou a Dra. Michelle Pitangueira, psicóloga especialista em terapia cognitivo-comportamental. 
+                  Sou a Dra. Sofia Lopes, psicóloga especialista em terapia cognitivo-comportamental. 
                   Aqui você encontrará um ambiente seguro e acolhedor para sua jornada de autoconhecimento.
                 </p>
               </div>
@@ -213,9 +216,15 @@ function App() {
                 Oferecemos diferentes modalidades de atendimento para melhor atender suas necessidades
               </p>
             </div>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-3 gap-8">
+              {/* Card: Terapia Individual */}
               <Card className="card-hover border-0 shadow-lg bg-white">
                 <CardContent className="p-8 space-y-6">
+                  <img 
+                    src={terapiaIndividualImg} 
+                    alt="Terapia Individual" 
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="space-y-4">
                     <h3 className="font-serif text-2xl font-semibold text-foreground">
                       Terapia Individual
@@ -242,8 +251,15 @@ function App() {
                   </div>
                 </CardContent>
               </Card>
+
+              {/* Card: Terapia de Casal */}
               <Card className="card-hover border-0 shadow-lg bg-white">
                 <CardContent className="p-8 space-y-6">
+                  <img 
+                    src={terapiaCasalImg} 
+                    alt="Terapia de Casal" 
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
                   <div className="space-y-4">
                     <h3 className="font-serif text-2xl font-semibold text-foreground">
                       Terapia de Casal
@@ -265,6 +281,41 @@ function App() {
                     <div className="flex items-center space-x-2 text-sm">
                       <div className="w-2 h-2 bg-primary rounded-full"></div>
                       <span>Foco na comunicação</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Card: Trabalhando com Crianças */}
+              <Card className="card-hover border-0 shadow-lg bg-white">
+                <CardContent className="p-8 space-y-6">
+                  <img 
+                    src={terapiaCriancasImg} 
+                    alt="Trabalhando com Crianças" 
+                    className="w-full h-48 object-cover rounded-lg mb-4"
+                  />
+                  <div className="space-y-4">
+                    <h3 className="font-serif text-2xl font-semibold text-foreground">
+                      Trabalhando com Crianças
+                    </h3>
+                    <p className="text-muted-foreground">
+                      Atendimento lúdico e adaptado para crianças, 
+                      ajudando-as a expressar emoções e desenvolver habilidades sociais 
+                      em um ambiente seguro e divertido.
+                    </p>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Sessões adaptadas à idade</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Terapia através do brincar</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Orientação para pais</span>
                     </div>
                   </div>
                 </CardContent>
@@ -336,148 +387,72 @@ function App() {
                   </h3>
                   <p className="text-muted-foreground mb-4">
                     Na primeira sessão, faremos uma avaliação inicial para entender 
-                    suas necessidades e definir os objetivos terapêuticos.
+                    suas necessidades e definir o melhor caminho para o seu tratamento.
                   </p>
-                  <div className="text-2xl font-bold text-primary">R$ 150</div>
-                  <div className="text-sm text-muted-foreground">Sessão de 50 minutos</div>
+                  <Button 
+                    onClick={() => scrollToSection('contato')}
+                    className="btn-primary text-white px-6 py-2 rounded-full"
+                  >
+                    Agendar Agora
+                  </Button>
                 </div>
               </div>
-              <Card className="border-0 shadow-xl">
-                <CardContent className="p-8">
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-4">
-                      <div>
-                        <label htmlFor="nome" className="block text-sm font-medium text-foreground mb-2">
-                          Nome completo
-                        </label>
-                        <Input
-                          id="nome"
-                          name="nome"
-                          type="text"
-                          value={formData.nome}
-                          onChange={handleInputChange}
-                          placeholder="Seu nome completo"
-                          required
-                          className="w-full"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                          E-mail
-                        </label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="seu@email.com"
-                          required
-                          className="w-full"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="telefone" className="block text-sm font-medium text-foreground mb-2">
-                          Telefone
-                        </label>
-                        <Input
-                          id="telefone"
-                          name="telefone"
-                          type="tel"
-                          value={formData.telefone}
-                          onChange={handleInputChange}
-                          placeholder="(11) 99999-9999"
-                          required
-                          className="w-full"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="mensagem" className="block text-sm font-medium text-foreground mb-2">
-                          Mensagem
-                        </label>
-                        <Textarea
-                          id="mensagem"
-                          name="mensagem"
-                          value={formData.mensagem}
-                          onChange={handleInputChange}
-                          placeholder="Conte-me um pouco sobre o que você gostaria de trabalhar..."
-                          rows={4}
-                          required
-                          className="w-full"
-                        />
-                      </div>
-                    </div>
-                    <Button 
-                      type="submit" 
-                      className="w-full btn-primary text-white py-3 rounded-full text-lg"
-                    >
-                      Enviar Mensagem
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[400px] lg:h-auto">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.08091208986!2d-46.65809718447816!3d-23.5658088675459!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c7b1f2e1b7%3A0x8f7e1b7e1b7e1b7e!2sRua%20das%20Flores%2C%20123%20-%20Jardins%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2001419-000!5e0!3m2!1spt-BR!2sbr!4v1678901234567!5m2!1spt-BR!2sbr"
+                  width="100%" 
+                  height="100%" 
+                  style={{ border: 0 }} 
+                  allowFullScreen="" 
+                  loading="lazy" 
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* WhatsApp Button */}
+      <a 
+        href="https://wa.me/5511999999999" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors z-50"
+      >
+        <MessageCircle className="w-8 h-8" />
+      </a>
+
       {/* Footer */}
       <footer className="bg-foreground text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="space-y-4">
-              <div className="font-serif text-2xl font-semibold">
-                Dra. Michelle Pitangueira
-              </div>
-              <p className="text-gray-300">
-                Psicóloga especialista em terapia cognitivo-comportamental, 
-                dedicada ao seu bem-estar emocional e crescimento pessoal.
-              </p>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Contato Rápido</h3>
-              <div className="space-y-2">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-4 h-4" />
-                  <span>(11) 99999-9999</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="w-4 h-4" />
-                  <span>contato@sofialopes.com.br</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-4 h-4" />
-                  <span>Jardins, São Paulo - SP</span>
-                </div>
-              </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="font-semibold text-lg">Informações</h3>
-              <div className="space-y-2 text-gray-300">
-                <p>CRP: 06/123456</p>
-                <p>Atendimento presencial e online</p>
-                <p>Horários flexíveis</p>
-              </div>
-            </div>
+        <div className="container mx-auto px-4 text-center">
+          <div className="font-serif text-2xl font-semibold mb-4">
+            Dra. Sofia Lopes
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
-            <p>&copy; 2024 Dra. Sofia Lopes. Todos os direitos reservados.</p>
+          <p className="text-muted-foreground mb-2">
+            Psicóloga Especialista em Terapia Cognitivo-Comportamental
+          </p>
+          <p className="text-muted-foreground mb-4">
+            CRP 06/XXXXX | Atendimento Online e Presencial
+          </p>
+          <div className="flex justify-center space-x-6 mb-6">
+            <a href="#" className="text-white hover:text-primary transition-colors">
+              <Phone className="w-6 h-6" />
+            </a>
+            <a href="#" className="text-white hover:text-primary transition-colors">
+              <Mail className="w-6 h-6" />
+            </a>
+            <a href="#" className="text-white hover:text-primary transition-colors">
+              <MapPin className="w-6 h-6" />
+            </a>
           </div>
+          <p className="text-sm text-muted-foreground">
+            © {new Date( ).getFullYear()} Dra. Sofia Lopes. Todos os direitos reservados.
+          </p>
         </div>
       </footer>
-
-      {/* WhatsApp Float Button */}
-      <a
-        href="https://wa.me/5511999999999"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:scale-110 z-50"
-      >
-        <MessageCircle className="w-6 h-6" />
-      </a>
     </div>
   )
 }
 
 export default App
-
