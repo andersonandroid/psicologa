@@ -5,9 +5,6 @@ import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
-import terapiaCriancasImg from './assets/terapia-criancas-real.jpg'
-import terapiaIndividualImg from './assets/terapia-individual-real.jpg'
-import terapiaCasalImg from './assets/terapia-casal-real.jpg'
 import './App.css'
 
 function App() {
@@ -45,7 +42,7 @@ function App() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="font-serif text-2xl font-semibold text-foreground">
-              Dra. Sofia Lopes
+              Dra. Michelle Pitangueira
             </div>
             <nav className="hidden md:flex items-center space-x-8">
               <button 
@@ -100,7 +97,7 @@ function App() {
                   <span className="text-gradient"> cura e crescimento</span>
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Sou a Dra. Sofia Lopes, psicóloga especialista em terapia cognitivo-comportamental. 
+                  Sou a Dra. Michelle Pitangueira, psicóloga especialista em terapia cognitivo-comportamental. 
                   Aqui você encontrará um ambiente seguro e acolhedor para sua jornada de autoconhecimento.
                 </p>
               </div>
@@ -134,7 +131,7 @@ function App() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img 
                   src={psicologaFoto} 
-                  alt="Dra. Sofia Lopes - Psicóloga" 
+                  alt="Dra. Michelle Pitangueira - Psicóloga" 
                   className="w-full h-auto object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
@@ -221,7 +218,7 @@ function App() {
               <Card className="card-hover border-0 shadow-lg bg-white">
                 <CardContent className="p-8 space-y-6">
                   <img 
-                    src={terapiaIndividualImg} 
+                    src="https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg?auto=compress&cs=tinysrgb&w=800" 
                     alt="Terapia Individual" 
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -256,7 +253,7 @@ function App() {
               <Card className="card-hover border-0 shadow-lg bg-white">
                 <CardContent className="p-8 space-y-6">
                   <img 
-                    src={terapiaCasalImg} 
+                    src="https://images.pexels.com/photos/7176319/pexels-photo-7176319.jpeg?auto=compress&cs=tinysrgb&w=800" 
                     alt="Terapia de Casal" 
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
@@ -286,17 +283,17 @@ function App() {
                 </CardContent>
               </Card>
 
-              {/* Card: Trabalhando com Crianças */}
+              {/* Card: Terapia Infantil */}
               <Card className="card-hover border-0 shadow-lg bg-white">
                 <CardContent className="p-8 space-y-6">
                   <img 
-                    src={terapiaCriancasImg} 
-                    alt="Trabalhando com Crianças" 
+                    src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                    alt="Terapia Infantil" 
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
                   <div className="space-y-4">
                     <h3 className="font-serif text-2xl font-semibold text-foreground">
-                      Trabalhando com Crianças
+                      Terapia Infantil
                     </h3>
                     <p className="text-muted-foreground">
                       Atendimento lúdico e adaptado para crianças, 
@@ -339,6 +336,77 @@ function App() {
             </div>
             <div className="grid lg:grid-cols-2 gap-12">
               <div className="space-y-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="nome" className="block text-sm font-medium text-foreground mb-2">
+                        Nome completo
+                      </label>
+                      <Input
+                        id="nome"
+                        name="nome"
+                        type="text"
+                        value={formData.nome}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full"
+                        placeholder="Seu nome completo"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="telefone" className="block text-sm font-medium text-foreground mb-2">
+                        Telefone
+                      </label>
+                      <Input
+                        id="telefone"
+                        name="telefone"
+                        type="tel"
+                        value={formData.telefone}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full"
+                        placeholder="(11) 99999-9999"
+                      />
+                    </div>
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                      E-mail
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full"
+                      placeholder="seu@email.com"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="mensagem" className="block text-sm font-medium text-foreground mb-2">
+                      Mensagem
+                    </label>
+                    <Textarea
+                      id="mensagem"
+                      name="mensagem"
+                      value={formData.mensagem}
+                      onChange={handleInputChange}
+                      required
+                      rows={4}
+                      className="w-full"
+                      placeholder="Conte-me um pouco sobre o que você gostaria de trabalhar..."
+                    />
+                  </div>
+                  <Button 
+                    type="submit"
+                    className="btn-primary text-white px-8 py-3 rounded-full text-lg w-full"
+                  >
+                    Enviar Mensagem
+                  </Button>
+                </form>
+
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
@@ -356,7 +424,7 @@ function App() {
                     </div>
                     <div>
                       <h3 className="font-semibold text-foreground mb-1">E-mail</h3>
-                      <p className="text-muted-foreground">contato@sofialopes.com.br</p>
+                      <p className="text-muted-foreground">contato@michellepitangueira.com.br</p>
                       <p className="text-sm text-muted-foreground">Resposta em até 24h</p>
                     </div>
                   </div>
@@ -381,6 +449,7 @@ function App() {
                     </div>
                   </div>
                 </div>
+
                 <div className="bg-primary/5 rounded-2xl p-6">
                   <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
                     Primeira Consulta
@@ -390,7 +459,7 @@ function App() {
                     suas necessidades e definir o melhor caminho para o seu tratamento.
                   </p>
                   <Button 
-                    onClick={() => scrollToSection('contato')}
+                    onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
                     className="btn-primary text-white px-6 py-2 rounded-full"
                   >
                     Agendar Agora
@@ -427,7 +496,7 @@ function App() {
       <footer className="bg-foreground text-white py-12">
         <div className="container mx-auto px-4 text-center">
           <div className="font-serif text-2xl font-semibold mb-4">
-            Dra. Sofia Lopes
+            Dra. Michelle Pitangueira
           </div>
           <p className="text-muted-foreground mb-2">
             Psicóloga Especialista em Terapia Cognitivo-Comportamental
@@ -436,18 +505,18 @@ function App() {
             CRP 06/XXXXX | Atendimento Online e Presencial
           </p>
           <div className="flex justify-center space-x-6 mb-6">
-            <a href="#" className="text-white hover:text-primary transition-colors">
+            <a href="tel:+5511999999999" className="text-white hover:text-primary transition-colors">
               <Phone className="w-6 h-6" />
             </a>
-            <a href="#" className="text-white hover:text-primary transition-colors">
+            <a href="mailto:contato@michellepitangueira.com.br" className="text-white hover:text-primary transition-colors">
               <Mail className="w-6 h-6" />
             </a>
-            <a href="#" className="text-white hover:text-primary transition-colors">
-              <MapPin className="w-6 h-6" />
+            <a href="https://wa.me/5511999999999" className="text-white hover:text-primary transition-colors">
+              <MessageCircle className="w-6 h-6" />
             </a>
           </div>
           <p className="text-sm text-muted-foreground">
-            © {new Date( ).getFullYear()} Dra. Sofia Lopes. Todos os direitos reservados.
+            © {new Date().getFullYear()} Dra. Michelle Pitangueira. Todos os direitos reservados.
           </p>
         </div>
       </footer>
