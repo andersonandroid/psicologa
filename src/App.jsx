@@ -4,6 +4,7 @@ import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Smartphone, Database, Users2, Shield, CheckCircle, Award, FileText, Download, Play, Calendar, CreditCard } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import AgendamentoOnline from './components/AgendamentoOnline.jsx'
@@ -465,8 +466,8 @@ function App() {
             <div className="space-y-8">
               <div className="space-y-4">
                 <h1 className="font-serif text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                  Bem-vinda ao seu espaço de 
-                  <span className="text-gradient"> cura e crescimento</span>
+                  Seu bem-estar emocional 
+                  <span className="text-gradient"> começa aqui</span>
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed">
                   Sou a Dra. Michelle Pitangueira, psicóloga especialista em terapia cognitivo-comportamental. 
