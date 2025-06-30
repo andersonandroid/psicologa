@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award } from 'lucide-react'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award, Play } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import './App.css'
 
@@ -309,8 +309,94 @@ function App() {
         </div>
       </section>
 
+      {/* Vídeos Demonstrativos Section */}
+      <section className="section-padding hero-gradient">
+        <div className="container mx-auto px-4">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="font-serif text-4xl font-bold text-foreground">
+                Conheça Nosso Trabalho
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Veja como desenvolvemos um ambiente acolhedor e especializado para cada tipo de atendimento
+              </p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8">
+              {/* Vídeo 1 - Terapia Infantil */}
+              <Card className="card-hover border-0 shadow-lg bg-white overflow-hidden">
+                <div className="relative">
+                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                    <div className="text-center space-y-4">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                        <Play className="w-8 h-8 text-primary ml-1" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-xl font-semibold text-foreground">Terapia Infantil</h3>
+                        <p className="text-muted-foreground">Ambiente lúdico e acolhedor</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      // Simular reprodução de vídeo
+                      alert('Vídeo de Terapia Infantil - Em breve disponível!')
+                    }}
+                    className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center group"
+                  >
+                    <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-10 h-10 text-primary ml-1" />
+                    </div>
+                  </button>
+                </div>
+                <CardContent className="p-6">
+                  <p className="text-muted-foreground">
+                    Conheça nosso espaço dedicado às crianças, com ambiente colorido, 
+                    brinquedos educativos e técnicas lúdicas especializadas.
+                  </p>
+                </CardContent>
+              </Card>
+
+              {/* Vídeo 2 - Consultório Geral */}
+              <Card className="card-hover border-0 shadow-lg bg-white overflow-hidden">
+                <div className="relative">
+                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                    <div className="text-center space-y-4">
+                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mx-auto shadow-lg">
+                        <Play className="w-8 h-8 text-primary ml-1" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-xl font-semibold text-foreground">Consultório</h3>
+                        <p className="text-muted-foreground">Ambiente profissional e acolhedor</p>
+                      </div>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      // Simular reprodução de vídeo
+                      alert('Vídeo do Consultório - Em breve disponível!')
+                    }}
+                    className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center group"
+                  >
+                    <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                      <Play className="w-10 h-10 text-primary ml-1" />
+                    </div>
+                  </button>
+                </div>
+                <CardContent className="p-6">
+                  <p className="text-muted-foreground">
+                    Nosso consultório foi pensado para proporcionar conforto e privacidade, 
+                    criando o ambiente ideal para o processo terapêutico.
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Serviços Section */}
-      <section id="servicos" className="section-padding hero-gradient">
+      <section id="servicos" className="section-padding bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
@@ -510,10 +596,10 @@ function App() {
       </section>
 
       {/* Guia Gratuito Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Card className="border-0 shadow-xl bg-gradient-to-r from-primary/5 to-accent/5">
+            <Card className="border-0 shadow-xl bg-white">
               <CardContent className="p-8 md:p-12">
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   <div className="space-y-6">
@@ -558,7 +644,16 @@ function App() {
                     </div>
 
                     <Button 
-                      onClick={() => window.open('/src/assets/Guia Rápido_ Foco na Ajuda e no Aprendizado para Pais.pdf', '_blank')}
+                      onClick={() => {
+                        // Criar um link temporário para download
+                        const link = document.createElement('a')
+                        link.href = '/src/assets/Guia Rápido_ Foco na Ajuda e no Aprendizado para Pais.pdf'
+                        link.download = 'Guia_Foco_na_Ajuda_e_Aprendizado_para_Pais.pdf'
+                        link.target = '_blank'
+                        document.body.appendChild(link)
+                        link.click()
+                        document.body.removeChild(link)
+                      }}
                       className="btn-primary text-white px-8 py-3 rounded-full text-lg w-full md:w-auto"
                     >
                       <Download className="w-5 h-5 mr-2" />
@@ -567,7 +662,7 @@ function App() {
                   </div>
                   
                   <div className="relative">
-                    <div className="bg-white rounded-2xl p-6 shadow-lg">
+                    <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 shadow-lg">
                       <div className="space-y-4">
                         <div className="flex items-center space-x-3">
                           <Award className="w-8 h-8 text-primary" />
@@ -601,7 +696,7 @@ function App() {
       </section>
 
       {/* Contato Section */}
-      <section id="contato" className="section-padding hero-gradient">
+      <section id="contato" className="section-padding bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
