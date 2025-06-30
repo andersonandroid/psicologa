@@ -113,7 +113,7 @@ function App() {
                 onClick={() => scrollToSection('meus-trabalhos')}
                 className="text-foreground hover:text-primary transition-colors"
               >
-                Meus Trabalhos
+                Trabalhos
               </button>
               <button 
                 onClick={() => scrollToSection('guia')}
@@ -224,7 +224,7 @@ function App() {
               onClick={() => scrollToSection('meus-trabalhos')}
               className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
             >
-              <span className="text-base font-medium">Meus Trabalhos</span>
+              <span className="text-base font-medium">Trabalhos</span>
             </button>
                           <button 
                 onClick={() => scrollToSection('guia')}
