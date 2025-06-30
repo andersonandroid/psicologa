@@ -191,3 +191,16 @@
 .is-mobile header > div > div {
   justify-content: center !important;
 }
+
+/* Força ocultação em telas pequenas */
+@media (max-width: 768px) {
+  nav[class*="md:flex"],
+  button[class*="md:hidden"],
+  div[class*="md:hidden"] {
+    display: none !important;
+  }
+  
+  header > div > div {
+    justify-content: center !important;
+  }
+}
