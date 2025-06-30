@@ -589,149 +589,164 @@ function App() {
 
             {/* Card Principal - Acompanhamento Psicopedagógico */}
             <Card className="card-hover border-0 shadow-2xl bg-white overflow-hidden">
-              <div className="grid lg:grid-cols-2 gap-0">
-                {/* Imagem */}
-                <div className="relative h-64 lg:h-auto">
-                  <img 
-                    src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Acompanhamento Psicopedagógico Integrado" 
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
-                  <div className="absolute top-4 left-4">
-                    <Badge className="bg-primary text-white">Tecnologia Moderna</Badge>
+              {/* Imagem Horizontal no Topo */}
+              <div className="relative h-64 md:h-80">
+                <img 
+                  src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+                  alt="Acompanhamento Psicopedagógico Integrado - Escola e Família" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute top-6 left-6">
+                  <Badge className="bg-primary text-white">Tecnologia Moderna</Badge>
+                </div>
+                <div className="absolute bottom-6 left-6 right-6 text-white">
+                  <h3 className="font-serif text-2xl lg:text-3xl font-bold mb-2">
+                    Acompanhamento Psicopedagógico Integrado
+                  </h3>
+                  <p className="text-white/90 text-lg">
+                    Escola e Família de Mãos Dadas
+                  </p>
+                </div>
+              </div>
+
+              {/* Conteúdo */}
+              <CardContent className="p-8 lg:p-12 space-y-8">
+                <div className="space-y-6">
+                  <p className="text-muted-foreground leading-relaxed text-lg">
+                    No desenvolvimento de uma criança, a parceria entre a família e a escola é fundamental. 
+                    Na Clínica Michelle Pitangueira, vamos além do atendimento individual, oferecendo um 
+                    acompanhamento psicopedagógico estratégico e conectado, que garante uma visão 360° do universo da criança.
+                  </p>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Compreendemos que o ambiente escolar é um pilar no crescimento de seu filho(a), e um bom 
+                    diálogo entre todos os envolvidos potencializa os resultados terapêuticos.
+                  </p>
+                </div>
+
+                {/* Diferenciais Tecnológicos */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Comunicação Integrada */}
+                  <div className="bg-primary/5 rounded-xl p-6 space-y-4">
+                    <h4 className="font-semibold text-foreground flex items-center">
+                      <Users2 className="w-5 h-5 mr-3 text-primary" />
+                      Comunicação Integrada e Segura com a Escola
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Utilizamos um canal de comunicação dedicado e criptografado, permitindo um intercâmbio 
+                      de informações eficiente e respeitoso com os educadores (com sua prévia autorização).
+                    </p>
+                    <ul className="text-sm text-muted-foreground space-y-2">
+                      <li className="flex items-start space-x-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Monitoramento contínuo do desempenho escolar</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Estratégias alinhadas entre consultório e escola</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Identificação rápida de desafios</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  {/* Prontuário Eletrônico */}
+                  <div className="bg-accent/5 rounded-xl p-6 space-y-4">
+                    <h4 className="font-semibold text-foreground flex items-center">
+                      <Database className="w-5 h-5 mr-3 text-primary" />
+                      Prontuário Eletrônico Avançado
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Todos os registros são mantidos em um prontuário eletrônico seguro, 
+                      com a mais alta tecnologia de proteção de dados.
+                    </p>
+                    <ul className="text-sm text-muted-foreground space-y-2">
+                      <li className="flex items-start space-x-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Acesso organizado ao histórico completo</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Padronização e excelência no acompanhamento</span>
+                      </li>
+                      <li className="flex items-start space-x-2">
+                        <CheckCircle className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                        <span>Proteção total dos dados (LGPD)</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
 
-                {/* Conteúdo */}
-                <CardContent className="p-8 lg:p-12 space-y-6">
-                  <div className="space-y-4">
-                    <h3 className="font-serif text-2xl lg:text-3xl font-bold text-foreground leading-tight">
-                      Acompanhamento Psicopedagógico Integrado: Escola e Família de Mãos Dadas
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      No desenvolvimento de uma criança, a parceria entre a família e a escola é fundamental. 
-                      Na Clínica Michelle Pitangueira, vamos além do atendimento individual, oferecendo um 
-                      acompanhamento psicopedagógico estratégico e conectado, que garante uma visão 360° do universo da criança.
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Compreendemos que o ambiente escolar é um pilar no crescimento de seu filho(a), e um bom 
-                      diálogo entre todos os envolvidos potencializa os resultados terapêuticos.
-                    </p>
-                  </div>
-
-                  {/* Diferenciais Tecnológicos */}
-                  <div className="space-y-6">
-                    <h4 className="font-serif text-xl font-semibold text-foreground flex items-center">
-                      <Smartphone className="w-5 h-5 mr-2 text-primary" />
-                      Nosso Diferencial com Tecnologia Moderna:
-                    </h4>
-
-                    {/* Comunicação Integrada */}
-                    <div className="bg-primary/5 rounded-lg p-6 space-y-3">
-                      <h5 className="font-semibold text-foreground flex items-center">
-                        <Users2 className="w-4 h-4 mr-2 text-primary" />
-                        Comunicação Integrada e Segura com a Escola:
-                      </h5>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Utilizamos um canal de comunicação dedicado e criptografado, permitindo um intercâmbio 
-                        de informações eficiente e respeitoso com os educadores (com sua prévia autorização). Isso nos possibilita:
-                      </p>
-                      <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                        <li>• Monitorar o desempenho e o comportamento da criança em sala de aula de forma contínua</li>
-                        <li>• Compartilhar estratégias e intervenções alinhadas entre o consultório e o ambiente escolar</li>
-                        <li>• Identificar e abordar rapidamente quaisquer desafios que surjam</li>
-                        <li>• Garantir a privacidade e o sigilo de todas as informações trocadas, conforme as diretrizes do CFP</li>
-                      </ul>
+                {/* Benefícios */}
+                <div className="space-y-6">
+                  <h4 className="font-serif text-xl font-semibold text-foreground text-center">
+                    Benefícios para a Criança e a Família
+                  </h4>
+                  <div className="grid md:grid-cols-3 gap-4">
+                    <div className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium">Intervenções mais assertivas</span>
                     </div>
-
-                    {/* Prontuário Eletrônico */}
-                    <div className="bg-accent/5 rounded-lg p-6 space-y-3">
-                      <h5 className="font-semibold text-foreground flex items-center">
-                        <Database className="w-4 h-4 mr-2 text-primary" />
-                        Prontuário Eletrônico Avançado e Confidencial:
-                      </h5>
-                      <p className="text-sm text-muted-foreground leading-relaxed">
-                        Todos os registros do acompanhamento são mantidos em um prontuário eletrônico seguro, 
-                        com a mais alta tecnologia de proteção de dados. Isso assegura:
-                      </p>
-                      <ul className="text-sm text-muted-foreground space-y-1 ml-4">
-                        <li>• Acesso rápido e organizado ao histórico de desenvolvimento, avaliações e intervenções</li>
-                        <li>• Padronização das informações, garantindo um acompanhamento de excelência</li>
-                        <li>• Confidencialidade total, com acesso restrito e protegido (LGPD e Código de Ética)</li>
-                      </ul>
+                    <div className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium">Agilidade na identificação</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium">Consistência nas estratégias</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium">Melhora acadêmica</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium">Tranquilidade para os pais</span>
+                    </div>
+                    <div className="flex items-center space-x-3 p-3 bg-white rounded-lg shadow-sm">
+                      <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="text-sm font-medium">Desenvolvimento social</span>
                     </div>
                   </div>
+                </div>
 
-                  {/* Benefícios */}
-                  <div className="space-y-4">
-                    <h4 className="font-serif text-xl font-semibold text-foreground">
-                      Benefícios para a Criança e a Família:
-                    </h4>
-                    <div className="grid md:grid-cols-2 gap-3">
-                      <div className="flex items-center space-x-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>Intervenções mais assertivas</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>Agilidade na identificação de necessidades</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>Consistência nas estratégias</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>Melhora no desempenho acadêmico</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>Tranquilidade e segurança para os pais</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
-                        <span>Desenvolvimento social aprimorado</span>
-                      </div>
-                    </div>
-                  </div>
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-6">
+                  <Button 
+                    onClick={showAgendamento}
+                    className="btn-primary text-white px-8 py-3 rounded-full flex-1 text-lg"
+                  >
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Agendar Avaliação
+                  </Button>
+                  <Button 
+                    onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full flex-1 text-lg"
+                  >
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Saiba Mais no WhatsApp
+                  </Button>
+                </div>
 
-                  {/* CTAs */}
-                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <Button 
-                      onClick={showAgendamento}
-                      className="btn-primary text-white px-6 py-3 rounded-full flex-1"
-                    >
-                      <Calendar className="w-4 h-4 mr-2" />
-                      Agendar Avaliação
-                    </Button>
-                    <Button 
-                      onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
-                      variant="outline"
-                      className="border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-full flex-1"
-                    >
-                      <MessageCircle className="w-4 h-4 mr-2" />
-                      Saiba Mais no WhatsApp
-                    </Button>
-                  </div>
-
-                  {/* Selos de Confiança */}
-                  <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-100">
-                    <Badge variant="outline" className="text-xs">
-                      <Shield className="w-3 h-3 mr-1" />
-                      Proteção LGPD
-                    </Badge>
-                    <Badge variant="outline" className="text-xs">
-                      <Award className="w-3 h-3 mr-1" />
-                      CFP Certificado
-                    </Badge>
-                    <Badge variant="outline" className="text-xs">
-                      <Database className="w-3 h-3 mr-1" />
-                      Dados Seguros
-                    </Badge>
-                  </div>
-                </CardContent>
-              </div>
+                {/* Selos de Confiança */}
+                <div className="flex flex-wrap justify-center gap-4 pt-6 border-t border-gray-100">
+                  <Badge variant="outline" className="text-sm px-4 py-2">
+                    <Shield className="w-4 h-4 mr-2" />
+                    Proteção LGPD
+                  </Badge>
+                  <Badge variant="outline" className="text-sm px-4 py-2">
+                    <Award className="w-4 h-4 mr-2" />
+                    CFP Certificado
+                  </Badge>
+                  <Badge variant="outline" className="text-sm px-4 py-2">
+                    <Database className="w-4 h-4 mr-2" />
+                    Dados Seguros
+                  </Badge>
+                </div>
+              </CardContent>
             </Card>
           </div>
         </div>
