@@ -360,8 +360,9 @@ function App() {
               <video
                 id="therapy-video"
                 className="w-full h-auto"
-                poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23f0f0f0'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' font-family='Arial, sans-serif' font-size='24' fill='%23666'%3ETerapia Infantil%3C/text%3E%3C/svg%3E"
+                poster={terapiaCriancasImg}
                 controls={false}
+                preload="metadata"
                 onPlay={() => setIsVideoPlaying(true)}
                 onPause={() => setIsVideoPlaying(false)}
                 onEnded={() => setIsVideoPlaying(false)}
@@ -371,18 +372,28 @@ function App() {
               </video>
               
               {/* Custom Play Button Overlay */}
-              <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
-                <button
-                  onClick={toggleVideo}
-                  className="bg-white/90 hover:bg-white text-primary rounded-full p-6 transition-all duration-300 hover:scale-110 shadow-2xl"
-                >
-                  {isVideoPlaying ? (
-                    <Pause className="w-12 h-12" />
-                  ) : (
+              {!isVideoPlaying && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
+                  <button
+                    onClick={toggleVideo}
+                    className="bg-white/90 hover:bg-white text-primary rounded-full p-6 transition-all duration-300 hover:scale-110 shadow-2xl"
+                  >
                     <Play className="w-12 h-12 ml-1" />
-                  )}
-                </button>
-              </div>
+                  </button>
+                </div>
+              )}
+              
+              {/* Pause Button when playing */}
+              {isVideoPlaying && (
+                <div className="absolute top-4 right-4">
+                  <button
+                    onClick={toggleVideo}
+                    className="bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300"
+                  >
+                    <Pause className="w-6 h-6" />
+                  </button>
+                </div>
+              )}
             </div>
 
             <div className="mt-8 text-center">
