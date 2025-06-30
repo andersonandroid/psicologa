@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog.jsx'
+
 import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award, Play } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import AgendamentoOnline from './components/AgendamentoOnline.jsx'
@@ -18,7 +18,6 @@ function App() {
   })
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [agendamentoOpen, setAgendamentoOpen] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
   const handleInputChange = (e) => {
@@ -47,13 +46,8 @@ function App() {
   }
 
   const abrirAgendamento = () => {
-    if (isMobile) {
-      // No mobile, rola para a seção de agendamento
-      scrollToSection('agendamento')
-    } else {
-      // No desktop, abre o modal
-      setAgendamentoOpen(true)
-    }
+    // Sempre rola para a seção de agendamento (sem modal)
+    scrollToSection('agendamento')
   }
 
   // Detectar se é mobile
@@ -120,12 +114,6 @@ function App() {
                 className="text-foreground hover:text-primary transition-colors"
               >
                 Guia
-              </button>
-              <button 
-                onClick={() => scrollToSection('agendamento')}
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Agendamento
               </button>
               <button 
                 onClick={() => scrollToSection('contato')}
@@ -231,12 +219,6 @@ function App() {
                 className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
               >
                 <span className="text-base font-medium">Guia</span>
-              </button>
-              <button 
-                onClick={() => scrollToSection('agendamento')}
-                className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
-              >
-                <span className="text-base font-medium">Agendamento</span>
               </button>
               <button 
                 onClick={() => scrollToSection('contato')}
@@ -866,17 +848,7 @@ function App() {
         </div>
       </section>
 
-      {/* Modal de Agendamento - Apenas no Desktop */}
-      {!isMobile && (
-        <Dialog open={agendamentoOpen} onOpenChange={setAgendamentoOpen}>
-          <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
-            <DialogHeader>
-              <DialogTitle className="sr-only">Agendamento Online</DialogTitle>
-            </DialogHeader>
-            <AgendamentoOnline />
-          </DialogContent>
-        </Dialog>
-      )}
+
 
       {/* WhatsApp Button */}
       <a 
