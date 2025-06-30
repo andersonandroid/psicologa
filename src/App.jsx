@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award, Play } from 'lucide-react'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award, Play, Home, School, Lock, FileText, Target, UserCheck } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import terapiaInfantilVideo from './assets/Terapia_Infantil_Criado.mp4'
 import consultorioVideo from './assets/Pronto_Mulher_e_Criança.mp4'
@@ -378,7 +378,7 @@ function App() {
       {/* Serviços Section */}
       <section id="servicos" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="font-serif text-4xl font-bold text-foreground">
                 Serviços
@@ -387,103 +387,125 @@ function App() {
                 Oferecemos diferentes modalidades de atendimento para melhor atender suas necessidades
               </p>
             </div>
-            <div className="flex justify-center">
-              {/* Card: Acompanhamento Psicopedagógico Integrado */}
-              <Card className="card-hover border-0 shadow-lg bg-white max-w-2xl">
-                <CardContent className="p-8 space-y-6">
+            
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              {/* Imagem */}
+              <div className="relative">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                   <img 
-                    src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop" 
-                    alt="Acompanhamento Psicopedagógico - Sala colorida com criança e legos" 
-                    className="w-full h-64 object-cover rounded-lg mb-4"
+                    src="data:image/jpeg;base64,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" 
+                    alt="Psicóloga realizando terapia infantil com blocos coloridos"
+                    className="w-full h-full object-cover"
                   />
-                  <div className="space-y-4">
-                    <h3 className="font-serif text-2xl font-semibold text-foreground">
-                      Acompanhamento Psicopedagógico Integrado: Escola e Família de Mãos Dadas
-                    </h3>
-                    <p className="text-muted-foreground">
-                      No desenvolvimento de uma criança, a parceria entre a família e a escola é fundamental. Na Clínica Michelle Pitangueira, vamos além do atendimento individual, oferecendo um acompanhamento psicopedagógico estratégico e conectado, que garante uma visão 360° do universo da criança.
-                    </p>
-                    <p className="text-muted-foreground">
-                      Compreendemos que o ambiente escolar é um pilar no crescimento de seu filho(a), e um bom diálogo entre todos os envolvidos potencializa os resultados terapêuticos.
-                    </p>
-                  </div>
+                </div>
+              </div>
+
+              {/* Conteúdo */}
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h3 className="font-serif text-3xl font-bold text-foreground">
+                    Acompanhamento Psicopedagógico Integrado
+                  </h3>
+                  <p className="text-lg text-muted-foreground">
+                    Escola e Família de Mãos Dadas para o desenvolvimento completo da criança
+                  </p>
+                </div>
+
+                {/* Cards com ícones */}
+                <div className="grid gap-6">
                   
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-lg text-foreground">Comunicação Integrada e Segura com a Escola:</h4>
-                    <p className="text-muted-foreground">
-                      Utilizamos um canal de comunicação dedicado e criptografado, permitindo um intercâmbio de informações eficiente e respeitoso com os educadores (com sua prévia autorização). Isso nos possibilita:
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span>Monitorar o desempenho e o comportamento da criança em sala de aula de forma contínua.</span>
+                  {/* Comunicação Integrada */}
+                  <Card className="border-0 shadow-md bg-white/80">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <School className="w-6 h-6 text-blue-600" />
+                        </div>
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-foreground">Comunicação Integrada com a Escola</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Canal dedicado e criptografado para intercâmbio eficiente com educadores
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+                              <Target className="w-3 h-3 mr-1" />
+                              Monitoramento contínuo
+                            </span>
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-green-100 text-green-800">
+                              <UserCheck className="w-3 h-3 mr-1" />
+                              Estratégias alinhadas
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span>Compartilhar estratégias e intervenções alinhadas entre o consultório e o ambiente escolar.</span>
-                      </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span>Identificar e abordar rapidamente quaisquer desafios que surjam, trabalhando em conjunto para superá-los.</span>
-                      </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span>Garantir a privacidade e o sigilo de todas as informações trocadas, conforme as diretrizes do Conselho Federal de Psicologia (CFP).</span>
-                      </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
 
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-lg text-foreground">Prontuário Eletrônico Avançado e Confidencial:</h4>
-                    <p className="text-muted-foreground">
-                      Todos os registros do acompanhamento são mantidos em um prontuário eletrônico seguro, com a mais alta tecnologia de proteção de dados. Isso assegura:
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span>Acesso rápido e organizado ao histórico de desenvolvimento, avaliações e intervenções.</span>
+                  {/* Prontuário Eletrônico */}
+                  <Card className="border-0 shadow-md bg-white/80">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <FileText className="w-6 h-6 text-green-600" />
+                        </div>
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-foreground">Prontuário Eletrônico Avançado</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Registros seguros com tecnologia de proteção de dados
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
+                              <Clock className="w-3 h-3 mr-1" />
+                              Acesso rápido
+                            </span>
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-red-100 text-red-800">
+                              <Lock className="w-3 h-3 mr-1" />
+                              LGPD Compliant
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span>Padronização das informações, garantindo um acompanhamento de excelência.</span>
-                      </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span>Confidencialidade total, com acesso restrito e protegido, respeitando rigorosamente a Lei Geral de Proteção de Dados (LGPD) e o Código de Ética da Psicologia.</span>
-                      </div>
-                    </div>
-                  </div>
+                    </CardContent>
+                  </Card>
 
-                  <div className="space-y-4">
-                    <h4 className="font-semibold text-lg text-foreground">Benefícios para a Criança e a Família:</h4>
-                    <p className="text-muted-foreground">
-                      Ao integrar o acompanhamento psicológico com a rotina escolar por meio de ferramentas modernas e seguras, garantimos:
-                    </p>
-                    <div className="space-y-2">
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span><strong>Intervenções mais assertivas:</strong> Com um panorama completo do desenvolvimento da criança em diferentes ambientes.</span>
+                  {/* Benefícios */}
+                  <Card className="border-0 shadow-md bg-white/80">
+                    <CardContent className="p-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Home className="w-6 h-6 text-orange-600" />
+                        </div>
+                        <div className="space-y-2">
+                          <h4 className="font-semibold text-foreground">Benefícios para Criança e Família</h4>
+                          <p className="text-sm text-muted-foreground">
+                            Intervenções assertivas com panorama completo do desenvolvimento
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-800">
+                              <Star className="w-3 h-3 mr-1" />
+                              Resultados rápidos
+                            </span>
+                            <span className="inline-flex items-center px-2 py-1 rounded-full text-xs bg-indigo-100 text-indigo-800">
+                              <Heart className="w-3 h-3 mr-1" />
+                              Tranquilidade
+                            </span>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span><strong>Agilidade na identificação de necessidades:</strong> Permitindo ações rápidas e eficazes.</span>
-                      </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span><strong>Consistência nas estratégias:</strong> Pais, psicólogos e escola trabalhando em sintonia.</span>
-                      </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span><strong>Melhora no desempenho acadêmico e social:</strong> Com um suporte contínuo e alinhado.</span>
-                      </div>
-                      <div className="flex items-start space-x-2 text-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mt-2"></div>
-                        <span><strong>Tranquilidade e segurança:</strong> Para os pais, sabendo que o acompanhamento do seu filho(a) é feito com o máximo de cuidado e profissionalismo, utilizando o que há de mais moderno em gestão de informações.</span>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+
+                </div>
+
+                <div className="pt-4">
+                  <Button 
+                    onClick={() => scrollToSection('contato')}
+                    className="btn-primary text-white px-8 py-3 rounded-full text-lg"
+                  >
+                    Saiba Mais Sobre Nossos Serviços
+                  </Button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -667,8 +689,6 @@ function App() {
         </div>
       </section>
 
-
-
       {/* Contato Section */}
       <section id="contato" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
@@ -828,8 +848,6 @@ function App() {
           </div>
         </div>
       </section>
-
-
 
       {/* WhatsApp Button */}
       <a 
