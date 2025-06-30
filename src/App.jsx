@@ -5,7 +5,7 @@ import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Badge } from '@/components/ui/badge.jsx'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Smartphone, Database, Users2, Shield, CheckCircle, Award, FileText, Download, Play, Calendar, CreditCard } from 'lucide-react'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Smartphone, Database, Users2, Shield, CheckCircle, Award, FileText, Download, Play, Calendar, CreditCard, Menu, X } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import AgendamentoOnline from './components/AgendamentoOnline.jsx'
 import './App.css'
@@ -19,6 +19,7 @@ function App() {
   })
 
   const [activeSection, setActiveSection] = useState('home')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -38,6 +39,7 @@ function App() {
 
   const scrollToSection = (sectionId) => {
     setActiveSection('home')
+    setMobileMenuOpen(false) // Fechar menu mobile ao navegar
     setTimeout(() => {
       document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
     }, 100)
@@ -45,14 +47,21 @@ function App() {
 
   const showAgendamento = () => {
     setActiveSection('agendamento')
+    setMobileMenuOpen(false) // Fechar menu mobile
   }
 
   const showGuia = () => {
     setActiveSection('guia')
+    setMobileMenuOpen(false) // Fechar menu mobile
   }
 
   const showHome = () => {
     setActiveSection('home')
+    setMobileMenuOpen(false) // Fechar menu mobile
+  }
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen)
   }
 
   if (activeSection === 'agendamento') {
@@ -82,8 +91,43 @@ function App() {
                   WhatsApp
                 </Button>
               </nav>
+              
+              {/* Menu Mobile */}
+              <div className="md:hidden">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleMobileMenu}
+                  className="relative z-50"
+                >
+                  {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </Button>
+              </div>
             </div>
           </div>
+
+          {/* Menu Mobile Dropdown */}
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-sm border-b border-border shadow-lg">
+              <nav className="container mx-auto px-4 py-4 space-y-4">
+                <button 
+                  onClick={showHome}
+                  className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
+                >
+                  Voltar ao Site
+                </button>
+                <Button 
+                  onClick={() => {
+                    window.open('https://wa.me/5511999999999', '_blank')
+                    setMobileMenuOpen(false)
+                  }}
+                  className="btn-primary text-white px-6 py-2 rounded-full w-full"
+                >
+                  WhatsApp
+                </Button>
+              </nav>
+            </div>
+          )}
         </header>
 
         {/* Conteúdo do Agendamento */}
@@ -123,8 +167,43 @@ function App() {
                   WhatsApp
                 </Button>
               </nav>
+              
+              {/* Menu Mobile */}
+              <div className="md:hidden">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={toggleMobileMenu}
+                  className="relative z-50"
+                >
+                  {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                </Button>
+              </div>
             </div>
           </div>
+
+          {/* Menu Mobile Dropdown */}
+          {mobileMenuOpen && (
+            <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-sm border-b border-border shadow-lg">
+              <nav className="container mx-auto px-4 py-4 space-y-4">
+                <button 
+                  onClick={showHome}
+                  className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
+                >
+                  Voltar ao Site
+                </button>
+                <Button 
+                  onClick={() => {
+                    window.open('https://wa.me/5511999999999', '_blank')
+                    setMobileMenuOpen(false)
+                  }}
+                  className="btn-primary text-white px-6 py-2 rounded-full w-full"
+                >
+                  WhatsApp
+                </Button>
+              </nav>
+            </div>
+          )}
         </header>
 
         {/* Conteúdo do Guia */}
@@ -411,6 +490,8 @@ function App() {
             <div className="font-serif text-2xl font-semibold text-foreground">
               Dra. Michelle Pitangueira
             </div>
+            
+            {/* Menu Desktop */}
             <nav className="hidden md:flex items-center space-x-8">
               <button 
                 onClick={() => scrollToSection('inicio')}
@@ -449,14 +530,64 @@ function App() {
                 Agendar Consulta
               </Button>
             </nav>
-            <Button 
-              onClick={showAgendamento}
-              className="md:hidden btn-primary text-white px-4 py-2 rounded-full"
-            >
-              Agendar
-            </Button>
+            
+            {/* Menu Mobile */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleMobileMenu}
+                className="relative z-50"
+              >
+                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </Button>
+            </div>
           </div>
         </div>
+
+        {/* Menu Mobile Dropdown */}
+        {mobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-0 w-full bg-white/95 backdrop-blur-sm border-b border-border shadow-lg">
+            <nav className="container mx-auto px-4 py-4 space-y-4">
+              <button 
+                onClick={() => scrollToSection('inicio')}
+                className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
+              >
+                Início
+              </button>
+              <button 
+                onClick={() => scrollToSection('sobre')}
+                className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
+              >
+                Sobre
+              </button>
+              <button 
+                onClick={() => scrollToSection('servicos')}
+                className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
+              >
+                Serviços
+              </button>
+              <button 
+                onClick={showGuia}
+                className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
+              >
+                Guia Gratuito
+              </button>
+              <button 
+                onClick={() => scrollToSection('contato')}
+                className="block w-full text-left text-foreground hover:text-primary transition-colors py-2"
+              >
+                Contato
+              </button>
+              <Button 
+                onClick={showAgendamento}
+                className="btn-primary text-white px-6 py-2 rounded-full w-full mt-4"
+              >
+                Agendar Consulta
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
