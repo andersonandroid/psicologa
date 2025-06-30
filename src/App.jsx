@@ -97,7 +97,7 @@ function App() {
                   <span className="text-gradient"> cura e crescimento</span>
                 </h1>
                 <p className="text-xl text-muted-foreground leading-relaxed">
-                  Sou a Dra. Sofia Lopes, psicóloga especialista em terapia cognitivo-comportamental. 
+                  Sou a Dra. Michelle Pitangueira, psicóloga especialista em terapia cognitivo-comportamental. 
                   Aqui você encontrará um ambiente seguro e acolhedor para sua jornada de autoconhecimento.
                 </p>
               </div>

@@ -1,4 +1,4 @@
-# Site Profissional - Dra. Sofia Lopes (Psicóloga)
+# Site Profissional - Dra. Michele Pitangueira (Psicóloga)
 
 ## Descrição
 Site profissional, sofisticado e de alto nível para uma psicóloga especialista, com foco na facilidade de contato do paciente. O projeto foi desenvolvido com React, Tailwind CSS e componentes modernos.
