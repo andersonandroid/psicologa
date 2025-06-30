@@ -7,6 +7,7 @@ import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, P
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import terapiaCriancasImg from './assets/terapia-criancas-real copy.jpg'
 import terapiaInfantilVideo from './assets/Terapia_Infantil_Criado.mp4'
+import mulherCriancaVideo from './assets/Pronto_Mulher_e_Criança.mp4'
 import './App.css'
 
 function App() {
@@ -17,7 +18,8 @@ function App() {
     mensagem: ''
   })
 
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
+  const [isVideo1Playing, setIsVideo1Playing] = useState(false)
+  const [isVideo2Playing, setIsVideo2Playing] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -39,14 +41,38 @@ function App() {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const toggleVideo = () => {
-    const video = document.getElementById('therapy-video')
-    if (video.paused) {
-      video.play()
-      setIsVideoPlaying(true)
+  const toggleVideo = (videoNumber) => {
+    const video1 = document.getElementById('therapy-video-1')
+    const video2 = document.getElementById('therapy-video-2')
+    
+    if (videoNumber === 1) {
+      // Pause video 2 if playing
+      if (!video2.paused) {
+        video2.pause()
+        setIsVideo2Playing(false)
+      }
+      
+      if (video1.paused) {
+        video1.play()
+        setIsVideo1Playing(true)
+      } else {
+        video1.pause()
+        setIsVideo1Playing(false)
+      }
     } else {
-      video.pause()
-      setIsVideoPlaying(false)
+      // Pause video 1 if playing
+      if (!video1.paused) {
+        video1.pause()
+        setIsVideo1Playing(false)
+      }
+      
+      if (video2.paused) {
+        video2.play()
+        setIsVideo2Playing(true)
+      } else {
+        video2.pause()
+        setIsVideo2Playing(false)
+      }
     }
   }
 
@@ -82,7 +108,7 @@ function App() {
                 onClick={() => scrollToSection('video')}
                 className="text-foreground hover:text-primary transition-colors"
               >
-                Vídeo
+                Vídeos
               </button>
               <button 
                 onClick={() => scrollToSection('contato')}
@@ -343,87 +369,149 @@ function App() {
         </div>
       </section>
 
-      {/* Vídeo Section */}
+      {/* Vídeos Section */}
       <section id="video" className="section-padding bg-white">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="font-serif text-4xl font-bold text-foreground">
                 Conheça Meu Trabalho
               </h2>
               <p className="text-xl text-muted-foreground">
-                Veja como a terapia infantil pode transformar a vida das crianças e suas famílias
+                Veja como a terapia pode transformar vidas através de técnicas especializadas
               </p>
             </div>
             
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
-              <video
-                id="therapy-video"
-                className="w-full h-auto"
-                poster={terapiaCriancasImg}
-                controls={false}
-                preload="metadata"
-                onPlay={() => setIsVideoPlaying(true)}
-                onPause={() => setIsVideoPlaying(false)}
-                onEnded={() => setIsVideoPlaying(false)}
-              >
-                <source src={terapiaInfantilVideo} type="video/mp4" />
-                Seu navegador não suporta o elemento de vídeo.
-              </video>
-              
-              {/* Custom Play Button Overlay */}
-              {!isVideoPlaying && (
-                <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
-                  <button
-                    onClick={toggleVideo}
-                    className="bg-white/90 hover:bg-white text-primary rounded-full p-6 transition-all duration-300 hover:scale-110 shadow-2xl"
+            <div className="grid lg:grid-cols-2 gap-8">
+              {/* Primeiro Vídeo - Terapia Infantil */}
+              <div className="space-y-6">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
+                  <video
+                    id="therapy-video-1"
+                    className="w-full h-auto"
+                    poster={terapiaCriancasImg}
+                    controls={false}
+                    preload="metadata"
+                    onPlay={() => setIsVideo1Playing(true)}
+                    onPause={() => setIsVideo1Playing(false)}
+                    onEnded={() => setIsVideo1Playing(false)}
                   >
-                    <Play className="w-12 h-12 ml-1" />
-                  </button>
+                    <source src={terapiaInfantilVideo} type="video/mp4" />
+                    Seu navegador não suporta o elemento de vídeo.
+                  </video>
+                  
+                  {/* Custom Play Button Overlay */}
+                  {!isVideo1Playing && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
+                      <button
+                        onClick={() => toggleVideo(1)}
+                        className="bg-white/90 hover:bg-white text-primary rounded-full p-4 transition-all duration-300 hover:scale-110 shadow-2xl"
+                      >
+                        <Play className="w-8 h-8 ml-1" />
+                      </button>
+                    </div>
+                  )}
+                  
+                  {/* Pause Button when playing */}
+                  {isVideo1Playing && (
+                    <div className="absolute top-4 right-4">
+                      <button
+                        onClick={() => toggleVideo(1)}
+                        className="bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300"
+                      >
+                        <Pause className="w-5 h-5" />
+                      </button>
+                    </div>
+                  )}
                 </div>
-              )}
-              
-              {/* Pause Button when playing */}
-              {isVideoPlaying && (
-                <div className="absolute top-4 right-4">
-                  <button
-                    onClick={toggleVideo}
-                    className="bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300"
-                  >
-                    <Pause className="w-6 h-6" />
-                  </button>
-                </div>
-              )}
-            </div>
 
-            <div className="mt-8 text-center">
-              <Card className="border-0 shadow-lg bg-primary/5">
-                <CardContent className="p-8">
-                  <h3 className="font-serif text-2xl font-semibold text-foreground mb-4">
-                    Terapia Infantil Especializada
-                  </h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
-                    Através de técnicas lúdicas e adaptadas para cada faixa etária, 
-                    ajudo crianças a desenvolverem habilidades emocionais, sociais e cognitivas. 
-                    O vídeo mostra um pouco do meu trabalho e como a terapia pode ser 
-                    um processo natural e divertido para os pequenos.
-                  </p>
-                  <div className="flex flex-wrap justify-center gap-4 text-sm">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Ambiente acolhedor e seguro</span>
+                <Card className="border-0 shadow-lg bg-primary/5">
+                  <CardContent className="p-6">
+                    <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
+                      Terapia Infantil Especializada
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      Através de técnicas lúdicas e adaptadas para cada faixa etária, 
+                      ajudo crianças a desenvolverem habilidades emocionais e sociais.
+                    </p>
+                    <div className="flex flex-wrap gap-3 text-sm">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Ambiente acolhedor</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Técnicas lúdicas</span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Técnicas baseadas no brincar</span>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Segundo Vídeo - Mulher e Criança */}
+              <div className="space-y-6">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
+                  <video
+                    id="therapy-video-2"
+                    className="w-full h-auto"
+                    poster={terapiaCriancasImg}
+                    controls={false}
+                    preload="metadata"
+                    onPlay={() => setIsVideo2Playing(true)}
+                    onPause={() => setIsVideo2Playing(false)}
+                    onEnded={() => setIsVideo2Playing(false)}
+                  >
+                    <source src={mulherCriancaVideo} type="video/mp4" />
+                    Seu navegador não suporta o elemento de vídeo.
+                  </video>
+                  
+                  {/* Custom Play Button Overlay */}
+                  {!isVideo2Playing && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
+                      <button
+                        onClick={() => toggleVideo(2)}
+                        className="bg-white/90 hover:bg-white text-primary rounded-full p-4 transition-all duration-300 hover:scale-110 shadow-2xl"
+                      >
+                        <Play className="w-8 h-8 ml-1" />
+                      </button>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Acompanhamento familiar</span>
+                  )}
+                  
+                  {/* Pause Button when playing */}
+                  {isVideo2Playing && (
+                    <div className="absolute top-4 right-4">
+                      <button
+                        onClick={() => toggleVideo(2)}
+                        className="bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300"
+                      >
+                        <Pause className="w-5 h-5" />
+                      </button>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  )}
+                </div>
+
+                <Card className="border-0 shadow-lg bg-primary/5">
+                  <CardContent className="p-6">
+                    <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
+                      Terapia Familiar e Materna
+                    </h3>
+                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                      Apoio especializado para mães e famílias, fortalecendo vínculos 
+                      e promovendo o bem-estar emocional de todos os envolvidos.
+                    </p>
+                    <div className="flex flex-wrap gap-3 text-sm">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Vínculo mãe-bebê</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <span>Orientação familiar</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
