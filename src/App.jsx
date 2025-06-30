@@ -427,7 +427,7 @@ function App() {
           <div className="grid md:grid-cols-3 gap-8">
             <div className="space-y-4">
               <div className="font-serif text-2xl font-semibold">
-                Dra. Sofia Lopes
+                Dra. Michelle Pitangueira
               </div>
               <p className="text-gray-300">
                 Psicóloga especialista em terapia cognitivo-comportamental, 
