@@ -7,6 +7,8 @@ import { Textarea } from '@/components/ui/textarea.jsx'
 
 import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award, Play } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
+import terapiaInfantilVideo from './assets/Terapia_Infantil_Criado.mp4'
+import consultorioVideo from './assets/Pronto_Mulher_e_Criança.mp4'
 import './App.css'
 
 function App() {
@@ -106,10 +108,10 @@ function App() {
                 Serviços
               </button>
               <button 
-                onClick={() => scrollToSection('meus-trabalhos')}
+                onClick={() => scrollToSection('videos')}
                 className="text-foreground hover:text-primary transition-colors"
               >
-                Trabalhos
+                Vídeos
               </button>
               <button 
                 onClick={() => scrollToSection('guia')}
@@ -211,10 +213,10 @@ function App() {
               <span className="text-base font-medium">Serviços</span>
             </button>
             <button 
-              onClick={() => scrollToSection('meus-trabalhos')}
+              onClick={() => scrollToSection('videos')}
               className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
             >
-              <span className="text-base font-medium">Trabalhos</span>
+              <span className="text-base font-medium">Vídeos</span>
             </button>
                           <button 
                 onClick={() => scrollToSection('guia')}
@@ -487,13 +489,13 @@ function App() {
         </div>
       </section>
 
-      {/* Meus Trabalhos Section */}
-      <section id="meus-trabalhos" className="section-padding bg-white">
+      {/* Vídeos Section */}
+      <section id="videos" className="section-padding bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="font-serif text-4xl font-bold text-foreground">
-                Meus Trabalhos
+                Vídeos
               </h2>
               <p className="text-xl text-muted-foreground">
                 Veja como desenvolvemos um ambiente acolhedor e especializado para cada tipo de atendimento
@@ -504,68 +506,60 @@ function App() {
               {/* Vídeo 1 - Terapia Infantil */}
               <Card className="card-hover border-0 shadow-lg bg-white overflow-hidden">
                 <div className="relative">
-                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mx-auto shadow-lg">
-                        <Play className="w-8 h-8 text-primary ml-1" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif text-xl font-semibold text-foreground">Terapia Infantil</h3>
-                        <p className="text-muted-foreground">Ambiente lúdico e acolhedor</p>
-                      </div>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => {
-                      // Simular reprodução de vídeo
-                      alert('Vídeo de Terapia Infantil - Em breve disponível!')
-                    }}
-                    className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center group"
+                  <video 
+                    className="w-full aspect-video object-cover"
+                    controls
+                    poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNGM0Y0RjYiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIxODAiIHI9IjQwIiBmaWxsPSIjNjM2NkYxIi8+PHBhdGggZD0ibTMzMCAxNzAgMjAgMTAtMjAgMTB2LTIwWiIgZmlsbD0iI0ZGRkZGRiIvPjx0ZXh0IHg9IjMyMCIgeT0iMjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjM2NkYxIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI2MDAiPlRlcmFwaWEgSW5mYW50aWw8L3RleHQ+PC9zdmc+"
                   >
-                    <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-10 h-10 text-primary ml-1" />
-                    </div>
-                  </button>
+                    <source src={terapiaInfantilVideo} type="video/mp4" />
+                    Seu navegador não suporta o elemento de vídeo.
+                  </video>
                 </div>
                 <CardContent className="p-6">
+                  <h3 className="font-serif text-xl font-semibold text-foreground mb-3">Terapia Infantil Especializada</h3>
                   <p className="text-muted-foreground">
-                    Conheça nosso espaço dedicado às crianças, com ambiente colorido, 
-                    brinquedos educativos e técnicas lúdicas especializadas.
+                    Através de técnicas lúdicas e adaptadas para cada faixa etária, ajudo crianças a desenvolverem habilidades emocionais e sociais.
                   </p>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Ambiente acolhedor</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Técnicas lúdicas</span>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
 
-              {/* Vídeo 2 - Consultório Geral */}
+              {/* Vídeo 2 - Foco na Ajuda e no Aprendizado */}
               <Card className="card-hover border-0 shadow-lg bg-white overflow-hidden">
                 <div className="relative">
-                  <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
-                    <div className="text-center space-y-4">
-                      <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center mx-auto shadow-lg">
-                        <Play className="w-8 h-8 text-primary ml-1" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif text-xl font-semibold text-foreground">Consultório</h3>
-                        <p className="text-muted-foreground">Ambiente profissional e acolhedor</p>
-                      </div>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={() => {
-                      // Simular reprodução de vídeo
-                      alert('Vídeo do Consultório - Em breve disponível!')
-                    }}
-                    className="absolute inset-0 bg-black/0 hover:bg-black/10 transition-colors duration-300 flex items-center justify-center group"
+                  <video 
+                    className="w-full aspect-video object-cover"
+                    controls
+                    poster="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQwIiBoZWlnaHQ9IjM2MCIgdmlld0JveD0iMCAwIDY0MCAzNjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIzNjAiIGZpbGw9IiNGM0Y0RjYiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIxODAiIHI9IjQwIiBmaWxsPSIjNjM2NkYxIi8+PHBhdGggZD0ibTMzMCAxNzAgMjAgMTAtMjAgMTB2LTIwWiIgZmlsbD0iI0ZGRkZGRiIvPjx0ZXh0IHg9IjMyMCIgeT0iMjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNjM2NkYxIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSI2MDAiPkZvY28gbmEgQWp1ZGE8L3RleHQ+PC9zdmc+"
                   >
-                    <div className="w-20 h-20 bg-white/90 rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-                      <Play className="w-10 h-10 text-primary ml-1" />
-                    </div>
-                  </button>
+                    <source src={consultorioVideo} type="video/mp4" />
+                    Seu navegador não suporta o elemento de vídeo.
+                  </video>
                 </div>
                 <CardContent className="p-6">
+                  <h3 className="font-serif text-xl font-semibold text-foreground mb-3">Foco na Ajuda e no Aprendizado</h3>
                   <p className="text-muted-foreground">
-                    Nosso consultório foi pensado para proporcionar conforto e privacidade, 
-                    criando o ambiente ideal para o processo terapêutico.
+                    O aprendizado pode ser divertido e acolhedor, acompanhado com momento de apoio e orientação, onde o incentivo faz toda a diferença no desenvolvimento de uma criança.
                   </p>
+                  <div className="mt-4 space-y-2">
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Foco na Orientação</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-sm">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Descoberta</span>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
