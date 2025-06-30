@@ -45,16 +45,12 @@ function App() {
   const toggleVideo = (videoNumber) => {
     const video1 = document.getElementById('therapy-video-1')
     const video2 = document.getElementById('therapy-video-2')
-    const guideVideo = document.getElementById('guide-video')
     
     if (videoNumber === 1) {
       // Pause other videos if playing
       if (!video2.paused) {
         video2.pause()
         setIsVideo2Playing(false)
-      }
-      if (guideVideo && !guideVideo.paused) {
-        guideVideo.pause()
       }
       
       if (video1.paused) {
@@ -70,9 +66,6 @@ function App() {
         video1.pause()
         setIsVideo1Playing(false)
       }
-      if (guideVideo && !guideVideo.paused) {
-        guideVideo.pause()
-      }
       
       if (video2.paused) {
         video2.play()
@@ -80,22 +73,6 @@ function App() {
       } else {
         video2.pause()
         setIsVideo2Playing(false)
-      }
-    } else if (videoNumber === 3) {
-      // Pause other videos if playing
-      if (!video1.paused) {
-        video1.pause()
-        setIsVideo1Playing(false)
-      }
-      if (!video2.paused) {
-        video2.pause()
-        setIsVideo2Playing(false)
-      }
-      
-      if (guideVideo.paused) {
-        guideVideo.play()
-      } else {
-        guideVideo.pause()
       }
     }
   }
@@ -493,7 +470,7 @@ function App() {
                   <video
                     id="therapy-video-2"
                     className="w-full h-full object-cover"
-                    poster="https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg?auto=compress&cs=tinysrgb&w=800"
+                    poster="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800"
                     controls={false}
                     preload="metadata"
                     onPlay={() => setIsVideo2Playing(true)}
@@ -568,36 +545,10 @@ function App() {
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Vídeo do Guia */}
-              <div className="order-2 lg:order-1">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
-                  <video
-                    id="guide-video"
-                    className="w-full h-80 object-cover"
-                    poster="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800"
-                    controls={false}
-                    preload="metadata"
-                  >
-                    <source src={mulherCriancaVideo} type="video/mp4" />
-                    Seu navegador não suporta o elemento de vídeo.
-                  </video>
-                  
-                  {/* Custom Play Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
-                    <button
-                      onClick={() => toggleVideo(3)}
-                      className="bg-white/90 hover:bg-white text-primary rounded-full p-4 transition-all duration-300 hover:scale-110 shadow-2xl"
-                    >
-                      <Play className="w-8 h-8 ml-1" />
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Conteúdo do Guia */}
-              <div className="order-1 lg:order-2 space-y-8">
-                <Card className="border-0 shadow-xl bg-white">
+            <div className="grid lg:grid-cols-3 gap-8">
+              {/* Card Principal do Guia */}
+              <div className="lg:col-span-2">
+                <Card className="border-0 shadow-xl bg-white h-full">
                   <CardContent className="p-8 space-y-6">
                     <div className="flex items-center space-x-4 mb-6">
                       <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
@@ -613,28 +564,36 @@ function App() {
 
                     <div className="space-y-4">
                       <h4 className="font-semibold text-lg text-foreground">O que você encontrará no guia:</h4>
-                      <ul className="space-y-3">
-                        <li className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-muted-foreground">Estratégias para criar um ambiente de aprendizado acolhedor</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-muted-foreground">Técnicas de incentivo e orientação positiva</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-muted-foreground">Como identificar e apoiar as necessidades emocionais da criança</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-muted-foreground">Atividades práticas para fortalecer o vínculo familiar</span>
-                        </li>
-                        <li className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <span className="text-muted-foreground">Sinais de quando buscar ajuda profissional</span>
-                        </li>
-                      </ul>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <ul className="space-y-3">
+                          <li className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-muted-foreground text-sm">Estratégias para criar um ambiente de aprendizado acolhedor</span>
+                          </li>
+                          <li className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-muted-foreground text-sm">Técnicas de incentivo e orientação positiva</span>
+                          </li>
+                          <li className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-muted-foreground text-sm">Como identificar necessidades emocionais da criança</span>
+                          </li>
+                        </ul>
+                        <ul className="space-y-3">
+                          <li className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-muted-foreground text-sm">Atividades práticas para fortalecer o vínculo familiar</span>
+                          </li>
+                          <li className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-muted-foreground text-sm">Sinais de quando buscar ajuda profissional</span>
+                          </li>
+                          <li className="flex items-start space-x-3">
+                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            <span className="text-muted-foreground text-sm">Exercícios de comunicação efetiva</span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
 
                     <div className="bg-primary/5 rounded-2xl p-6 space-y-4">
@@ -658,35 +617,80 @@ function App() {
                     </Button>
                   </CardContent>
                 </Card>
+              </div>
 
-                {/* CTA Section */}
-                <Card className="border-0 shadow-xl bg-gradient-to-r from-primary/10 to-accent/10">
-                  <CardContent className="p-8 text-center space-y-6">
-                    <h4 className="font-serif text-xl font-bold text-foreground">
+              {/* Sidebar com CTA e Informações Adicionais */}
+              <div className="space-y-6">
+                {/* Preview com Criança */}
+                <Card className="border-0 shadow-xl bg-white">
+                  <CardContent className="p-6">
+                    <div className="relative rounded-2xl overflow-hidden mb-4">
+                      <img 
+                        src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                        alt="Criança aprendendo com apoio" 
+                        className="w-full h-40 object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                      <div className="absolute bottom-3 left-3 text-white">
+                        <p className="text-sm font-medium">Foco na Orientação</p>
+                      </div>
+                    </div>
+                    <h4 className="font-semibold text-foreground mb-2">Aprendizado Acolhedor</h4>
+                    <p className="text-sm text-muted-foreground">
+                      Veja como o incentivo faz toda a diferença no desenvolvimento infantil.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* CTA Card */}
+                <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/10 to-accent/10">
+                  <CardContent className="p-6 text-center space-y-4">
+                    <h4 className="font-serif text-lg font-bold text-foreground">
                       Precisa de Orientação Personalizada?
                     </h4>
-                    <p className="text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                       Após ler o guia, se você tiver dúvidas específicas sobre o desenvolvimento 
-                      do seu filho ou quiser um acompanhamento mais personalizado, estou aqui para ajudar.
+                      do seu filho, estou aqui para ajudar.
                     </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                    <div className="space-y-3">
                       <Button 
                         onClick={() => scrollToSection('contato')}
-                        className="btn-primary text-white px-6 py-3 rounded-full"
+                        className="btn-primary text-white px-4 py-2 rounded-full w-full text-sm"
                       >
                         Agendar Consulta
                       </Button>
                       <Button 
                         onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
                         variant="outline"
-                        className="border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-full"
+                        className="border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-full w-full text-sm"
                       >
-                        Tirar Dúvidas no WhatsApp
+                        WhatsApp
                       </Button>
                     </div>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-xs text-muted-foreground">
                       <strong>Primeira consulta:</strong> Avaliação inicial gratuita de 30 minutos
                     </p>
+                  </CardContent>
+                </Card>
+
+                {/* Estatísticas */}
+                <Card className="border-0 shadow-xl bg-white">
+                  <CardContent className="p-6 space-y-4">
+                    <h4 className="font-semibold text-foreground text-center">Resultados Comprovados</h4>
+                    <div className="space-y-3">
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary">95%</div>
+                        <div className="text-xs text-muted-foreground">Pais relatam melhoria na comunicação</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary">8+</div>
+                        <div className="text-xs text-muted-foreground">Anos de experiência clínica</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-2xl font-bold text-primary">500+</div>
+                        <div className="text-xs text-muted-foreground">Famílias atendidas</div>
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
