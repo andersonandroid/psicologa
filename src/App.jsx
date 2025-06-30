@@ -384,12 +384,12 @@ function App() {
             
             <div className="grid lg:grid-cols-2 gap-8">
               {/* Primeiro Vídeo - Terapia Infantil */}
-              <div className="space-y-6">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
+              <div className="flex flex-col h-full">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black flex-shrink-0 h-80">
                   <video
                     id="therapy-video-1"
-                    className="w-full h-auto"
-                    poster={terapiaCriancasImg}
+                    className="w-full h-full object-cover"
+                    poster="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800"
                     controls={false}
                     preload="metadata"
                     onPlay={() => setIsVideo1Playing(true)}
@@ -425,16 +425,16 @@ function App() {
                   )}
                 </div>
 
-                <Card className="border-0 shadow-lg bg-primary/5">
-                  <CardContent className="p-6">
+                <Card className="border-0 shadow-lg bg-primary/5 flex-grow mt-6">
+                  <CardContent className="p-6 h-full flex flex-col">
                     <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
                       Terapia Infantil Especializada
                     </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
                       Através de técnicas lúdicas e adaptadas para cada faixa etária, 
                       ajudo crianças a desenvolverem habilidades emocionais e sociais.
                     </p>
-                    <div className="flex flex-wrap gap-3 text-sm">
+                    <div className="flex flex-wrap gap-3 text-sm mt-auto">
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-primary rounded-full"></div>
                         <span>Ambiente acolhedor</span>
@@ -449,12 +449,12 @@ function App() {
               </div>
 
               {/* Segundo Vídeo - Foco na Ajuda e no Aprendizado */}
-              <div className="space-y-6">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
+              <div className="flex flex-col h-full">
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black flex-shrink-0 h-80">
                   <video
                     id="therapy-video-2"
-                    className="w-full h-auto"
-                    poster={terapiaCriancasImg}
+                    className="w-full h-full object-cover"
+                    poster="https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg?auto=compress&cs=tinysrgb&w=800"
                     controls={false}
                     preload="metadata"
                     onPlay={() => setIsVideo2Playing(true)}
@@ -490,15 +490,15 @@ function App() {
                   )}
                 </div>
 
-                <Card className="border-0 shadow-lg bg-primary/5">
-                  <CardContent className="p-6">
+                <Card className="border-0 shadow-lg bg-primary/5 flex-grow mt-6">
+                  <CardContent className="p-6 h-full flex flex-col">
                     <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
                       Foco na Ajuda e no Aprendizado
                     </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed">
+                    <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
                       O aprendizado pode ser divertido e acolhedor, acompanhado com momento de apoio e orientação, onde o incentivo faz toda a diferença no desenvolvimento de uma criança.
                     </p>
-                    <div className="flex flex-wrap gap-3 text-sm">
+                    <div className="flex flex-wrap gap-3 text-sm mt-auto">
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-primary rounded-full"></div>
                         <span>Foco na Orientação</span>
@@ -633,7 +633,7 @@ function App() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex-shrink-0 flex items-center justify-center">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
                       <Clock className="w-6 h-6 text-primary" />
                     </div>
                     <div>
