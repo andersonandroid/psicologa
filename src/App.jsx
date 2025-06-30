@@ -3,12 +3,9 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Play, Pause, Download, FileText, BookOpen, Calendar, Shield, Smartphone, Database, Users2, CheckCircle2, Zap } from 'lucide-react'
+import { Badge } from '@/components/ui/badge.jsx'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Smartphone, Database, Users2, Shield, CheckCircle, Award, FileText, Download, Play, Calendar, CreditCard } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
-import terapiaCriancasImg from './assets/terapia-criancas-real copy.jpg'
-import terapiaInfantilVideo from './assets/Terapia_Infantil_Criado.mp4'
-import mulherCriancaVideo from './assets/Pronto_Mulher_e_Criança.mp4'
-import guiaPaisPDF from './assets/Guia Rápido_ Foco na Ajuda e no Aprendizado para Pais.pdf'
 import AgendamentoOnline from './components/AgendamentoOnline.jsx'
 import './App.css'
 
@@ -20,9 +17,7 @@ function App() {
     mensagem: ''
   })
 
-  const [isVideo1Playing, setIsVideo1Playing] = useState(false)
-  const [isVideo2Playing, setIsVideo2Playing] = useState(false)
-  const [showAgendamento, setShowAgendamento] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -41,86 +36,365 @@ function App() {
   }
 
   const scrollToSection = (sectionId) => {
-    if (sectionId === 'agendamento') {
-      setShowAgendamento(true)
-      return
-    }
-    setShowAgendamento(false)
-    document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+    setActiveSection('home')
+    setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+    }, 100)
   }
 
-  const toggleVideo = (videoNumber) => {
-    const video1 = document.getElementById('therapy-video-1')
-    const video2 = document.getElementById('therapy-video-2')
-    
-    if (videoNumber === 1) {
-      // Pause other videos if playing
-      if (!video2.paused) {
-        video2.pause()
-        setIsVideo2Playing(false)
-      }
-      
-      if (video1.paused) {
-        video1.play()
-        setIsVideo1Playing(true)
-      } else {
-        video1.pause()
-        setIsVideo1Playing(false)
-      }
-    } else if (videoNumber === 2) {
-      // Pause other videos if playing
-      if (!video1.paused) {
-        video1.pause()
-        setIsVideo1Playing(false)
-      }
-      
-      if (video2.paused) {
-        video2.play()
-        setIsVideo2Playing(true)
-      } else {
-        video2.pause()
-        setIsVideo2Playing(false)
-      }
-    }
+  const showAgendamento = () => {
+    setActiveSection('agendamento')
   }
 
-  const downloadGuide = () => {
-    const link = document.createElement('a')
-    link.href = guiaPaisPDF
-    link.download = 'Guia Rápido - Foco na Ajuda e no Aprendizado para Pais.pdf'
-    document.body.appendChild(link)
-    link.click()
-    document.body.removeChild(link)
+  const showGuia = () => {
+    setActiveSection('guia')
   }
 
-  // Se showAgendamento for true, mostra apenas o sistema de agendamento
-  if (showAgendamento) {
+  const showHome = () => {
+    setActiveSection('home')
+  }
+
+  if (activeSection === 'agendamento') {
     return (
       <div className="min-h-screen bg-background">
-        {/* Header simplificado para agendamento */}
+        {/* Header */}
         <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-border z-50">
           <div className="container mx-auto px-4 py-4">
             <div className="flex items-center justify-between">
               <button 
-                onClick={() => setShowAgendamento(false)}
+                onClick={showHome}
                 className="font-serif text-2xl font-semibold text-foreground hover:text-primary transition-colors"
               >
                 Dra. Michelle Pitangueira
               </button>
-              <Button 
-                onClick={() => setShowAgendamento(false)}
-                variant="outline"
-                className="px-4 py-2 rounded-full"
-              >
-                Voltar ao Site
-              </Button>
+              <nav className="hidden md:flex items-center space-x-8">
+                <button 
+                  onClick={showHome}
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  Voltar ao Site
+                </button>
+                <Button 
+                  onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+                  className="btn-primary text-white px-6 py-2 rounded-full"
+                >
+                  WhatsApp
+                </Button>
+              </nav>
             </div>
           </div>
         </header>
 
+        {/* Conteúdo do Agendamento */}
         <main className="pt-24 section-padding">
           <div className="container mx-auto px-4">
             <AgendamentoOnline />
+          </div>
+        </main>
+      </div>
+    )
+  }
+
+  if (activeSection === 'guia') {
+    return (
+      <div className="min-h-screen bg-background">
+        {/* Header */}
+        <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-border z-50">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              <button 
+                onClick={showHome}
+                className="font-serif text-2xl font-semibold text-foreground hover:text-primary transition-colors"
+              >
+                Dra. Michelle Pitangueira
+              </button>
+              <nav className="hidden md:flex items-center space-x-8">
+                <button 
+                  onClick={showHome}
+                  className="text-foreground hover:text-primary transition-colors"
+                >
+                  Voltar ao Site
+                </button>
+                <Button 
+                  onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+                  className="btn-primary text-white px-6 py-2 rounded-full"
+                >
+                  WhatsApp
+                </Button>
+              </nav>
+            </div>
+          </div>
+        </header>
+
+        {/* Conteúdo do Guia */}
+        <main className="pt-24 section-padding">
+          <div className="container mx-auto px-4 max-w-4xl">
+            {/* Header do Guia */}
+            <div className="text-center space-y-6 mb-12">
+              <div className="inline-flex items-center space-x-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium">
+                <FileText className="w-4 h-4" />
+                <span>Guia Gratuito para Pais</span>
+              </div>
+              <h1 className="font-serif text-4xl lg:text-5xl font-bold text-foreground">
+                Foco na Ajuda e no Aprendizado
+              </h1>
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                Um guia prático para pais que desejam apoiar o desenvolvimento emocional e educacional de seus filhos
+              </p>
+            </div>
+
+            {/* Preview com Criança */}
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl mb-12">
+              <img 
+                src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=1200" 
+                alt="Criança aprendendo com apoio dos pais" 
+                className="w-full h-64 md:h-80 object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+              <div className="absolute bottom-6 left-6 right-6 text-white">
+                <h3 className="font-serif text-2xl font-bold mb-2">
+                  Transforme a Relação com seu Filho
+                </h3>
+                <p className="text-white/90">
+                  Estratégias práticas para fortalecer vínculos e promover o desenvolvimento saudável
+                </p>
+              </div>
+            </div>
+
+            {/* Conteúdo do Guia */}
+            <div className="grid lg:grid-cols-3 gap-8 mb-12">
+              {/* Conteúdo Principal */}
+              <div className="lg:col-span-2 space-y-8">
+                <Card className="border-0 shadow-lg">
+                  <CardContent className="p-8">
+                    <h2 className="font-serif text-2xl font-bold text-foreground mb-6">
+                      O que você encontrará neste guia:
+                    </h2>
+                    
+                    <div className="space-y-6">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-primary font-bold text-sm">1</span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground mb-2">Comunicação Efetiva</h3>
+                          <p className="text-muted-foreground">
+                            Aprenda técnicas de comunicação que fortalecem o vínculo e promovem o diálogo aberto com seu filho.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-4">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-primary font-bold text-sm">2</span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground mb-2">Gestão de Emoções</h3>
+                          <p className="text-muted-foreground">
+                            Estratégias para ajudar seu filho a identificar, compreender e regular suas emoções de forma saudável.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-4">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-primary font-bold text-sm">3</span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground mb-2">Apoio ao Aprendizado</h3>
+                          <p className="text-muted-foreground">
+                            Dicas práticas para criar um ambiente favorável ao aprendizado e ao desenvolvimento cognitivo.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-4">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-primary font-bold text-sm">4</span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground mb-2">Estabelecimento de Limites</h3>
+                          <p className="text-muted-foreground">
+                            Como estabelecer limites claros e consistentes que promovem segurança e desenvolvimento.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-start space-x-4">
+                        <div className="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                          <span className="text-primary font-bold text-sm">5</span>
+                        </div>
+                        <div>
+                          <h3 className="font-semibold text-foreground mb-2">Sinais de Alerta</h3>
+                          <p className="text-muted-foreground">
+                            Reconheça quando é importante buscar ajuda profissional para o desenvolvimento de seu filho.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Benefícios */}
+                <Card className="border-0 shadow-lg bg-primary/5">
+                  <CardContent className="p-8">
+                    <h2 className="font-serif text-2xl font-bold text-foreground mb-6">
+                      Benefícios para sua família:
+                    </h2>
+                    
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-foreground">Melhora na comunicação familiar</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-foreground">Redução de conflitos</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-foreground">Fortalecimento dos vínculos</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-foreground">Desenvolvimento emocional saudável</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-foreground">Melhora no desempenho escolar</span>
+                      </div>
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                        <span className="text-foreground">Maior autoestima da criança</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              {/* Sidebar */}
+              <div className="space-y-6">
+                {/* Download do Guia */}
+                <Card className="border-primary shadow-lg">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Download className="w-8 h-8 text-primary" />
+                    </div>
+                    <h3 className="font-serif text-xl font-bold text-foreground mb-2">
+                      Download Gratuito
+                    </h3>
+                    <p className="text-muted-foreground mb-4 text-sm">
+                      Baixe agora o guia completo em PDF e tenha acesso a todas as estratégias e dicas práticas.
+                    </p>
+                    <Button 
+                      onClick={() => {
+                        // Simular download do PDF
+                        const link = document.createElement('a')
+                        link.href = '/src/assets/Guia Rápido_ Foco na Ajuda e no Aprendizado para Pais.pdf'
+                        link.download = 'Guia_Foco_Ajuda_Aprendizado_Pais.pdf'
+                        link.click()
+                      }}
+                      className="btn-primary text-white w-full rounded-full mb-3"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Baixar Guia PDF
+                    </Button>
+                    <p className="text-xs text-muted-foreground">
+                      100% gratuito • Sem spam • Acesso imediato
+                    </p>
+                  </CardContent>
+                </Card>
+
+                {/* Sobre a Autora */}
+                <Card className="border-0 shadow-lg">
+                  <CardContent className="p-6">
+                    <div className="text-center mb-4">
+                      <img 
+                        src={psicologaFoto} 
+                        alt="Dra. Michelle Pitangueira" 
+                        className="w-20 h-20 rounded-full mx-auto mb-3 object-cover"
+                      />
+                      <h3 className="font-serif text-lg font-bold text-foreground">
+                        Dra. Michelle Pitangueira
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        Psicóloga Especialista
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-center space-x-2">
+                        <Award className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>8+ anos de experiência</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Brain className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>Especialista em TCC</span>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Users className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>500+ famílias atendidas</span>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                {/* Depoimento */}
+                <Card className="border-0 shadow-lg bg-accent/5">
+                  <CardContent className="p-6">
+                    <div className="text-center mb-3">
+                      <div className="flex justify-center space-x-1 mb-2">
+                        {[1,2,3,4,5].map((star) => (
+                          <Star key={star} className="w-4 h-4 text-accent fill-current" />
+                        ))}
+                      </div>
+                      <p className="text-sm text-muted-foreground italic">
+                        "O guia da Dra. Michelle transformou nossa relação familiar. 
+                        As estratégias são práticas e realmente funcionam!"
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-2 font-medium">
+                        - Ana Paula, mãe de 2 filhos
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+
+            {/* CTA Final */}
+            <Card className="border-0 shadow-xl bg-gradient-to-r from-primary/10 to-accent/10">
+              <CardContent className="p-8 text-center">
+                <h2 className="font-serif text-3xl font-bold text-foreground mb-4">
+                  Precisa de Ajuda Personalizada?
+                </h2>
+                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                  Se você tem dúvidas específicas sobre o desenvolvimento do seu filho ou gostaria de um acompanhamento 
+                  profissional personalizado, estou aqui para ajudar.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button 
+                    onClick={showAgendamento}
+                    className="btn-primary text-white px-8 py-3 rounded-full text-lg"
+                  >
+                    <Calendar className="w-5 h-5 mr-2" />
+                    Agendar Consulta
+                  </Button>
+                  <Button 
+                    onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+                    variant="outline"
+                    className="border-primary text-primary hover:bg-primary hover:text-white px-8 py-3 rounded-full text-lg"
+                  >
+                    <MessageCircle className="w-5 h-5 mr-2" />
+                    Tirar Dúvidas no WhatsApp
+                  </Button>
+                </div>
+                
+                <p className="text-sm text-muted-foreground mt-4">
+                  Primeira consulta com desconto especial para quem baixou o guia
+                </p>
+              </CardContent>
+            </Card>
           </div>
         </main>
       </div>
@@ -156,16 +430,10 @@ function App() {
                 Serviços
               </button>
               <button 
-                onClick={() => scrollToSection('video')}
+                onClick={showGuia}
                 className="text-foreground hover:text-primary transition-colors"
               >
-                Vídeos
-              </button>
-              <button 
-                onClick={() => scrollToSection('guia')}
-                className="text-foreground hover:text-primary transition-colors"
-              >
-                Guia para Pais
+                Guia Gratuito
               </button>
               <button 
                 onClick={() => scrollToSection('contato')}
@@ -174,19 +442,17 @@ function App() {
                 Contato
               </button>
               <Button 
-                onClick={() => scrollToSection('agendamento')}
-                className="btn-primary text-white px-6 py-2 rounded-full flex items-center space-x-2"
+                onClick={showAgendamento}
+                className="btn-primary text-white px-6 py-2 rounded-full"
               >
-                <Calendar className="w-4 h-4" />
-                <span>Agendar Online</span>
+                Agendar Consulta
               </Button>
             </nav>
             <Button 
-              onClick={() => scrollToSection('agendamento')}
-              className="md:hidden btn-primary text-white px-4 py-2 rounded-full flex items-center space-x-2"
+              onClick={showAgendamento}
+              className="md:hidden btn-primary text-white px-4 py-2 rounded-full"
             >
-              <Calendar className="w-4 h-4" />
-              <span>Agendar</span>
+              Agendar
             </Button>
           </div>
         </div>
@@ -209,11 +475,10 @@ function App() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
-                  onClick={() => scrollToSection('agendamento')}
-                  className="btn-primary text-white px-8 py-3 rounded-full text-lg flex items-center justify-center space-x-2"
+                  onClick={showAgendamento}
+                  className="btn-primary text-white px-8 py-3 rounded-full text-lg"
                 >
-                  <Calendar className="w-5 h-5" />
-                  <span>Agendar Online</span>
+                  Agendar Consulta
                 </Button>
                 <Button 
                   variant="outline" 
@@ -230,7 +495,7 @@ function App() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock className="w-5 h-5 text-accent" />
-                  <span>Agendamento online</span>
+                  <span>Horários flexíveis</span>
                 </div>
               </div>
             </div>
@@ -308,7 +573,7 @@ function App() {
         </div>
       </section>
 
-      {/* Serviços Section - Acompanhamento Psicopedagógico Integrado */}
+      {/* Serviços Section */}
       <section id="servicos" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
@@ -316,551 +581,158 @@ function App() {
               <h2 className="font-serif text-4xl font-bold text-foreground">
                 Nosso Diferencial
               </h2>
-              <p className="text-xl text-muted-foreground">
-                Inovação tecnológica a serviço do desenvolvimento infantil
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+                Oferecemos um acompanhamento psicopedagógico inovador que integra família, escola e tecnologia 
+                para o desenvolvimento completo da criança
               </p>
             </div>
-            
+
             {/* Card Principal - Acompanhamento Psicopedagógico */}
             <Card className="card-hover border-0 shadow-2xl bg-white overflow-hidden">
               <div className="grid lg:grid-cols-2 gap-0">
                 {/* Imagem */}
-                <div className="relative h-80 lg:h-auto">
+                <div className="relative h-64 lg:h-auto">
                   <img 
-                    src={terapiaCriancasImg} 
+                    src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800" 
                     alt="Acompanhamento Psicopedagógico Integrado" 
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
-                  <div className="absolute top-6 left-6">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
-                      <Smartphone className="w-4 h-4 text-primary" />
-                      <span className="text-sm font-medium text-foreground">Tecnologia Moderna</span>
-                    </div>
+                  <div className="absolute top-4 left-4">
+                    <Badge className="bg-primary text-white">Tecnologia Moderna</Badge>
                   </div>
                 </div>
 
                 {/* Conteúdo */}
-                <CardContent className="p-8 lg:p-12 space-y-8">
+                <CardContent className="p-8 lg:p-12 space-y-6">
                   <div className="space-y-4">
-                    <div className="flex items-center space-x-3 mb-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
-                        <Users2 className="w-6 h-6 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif text-2xl font-bold text-foreground">
-                          Acompanhamento Psicopedagógico Integrado
-                        </h3>
-                        <p className="text-primary font-medium">Escola e Família de Mãos Dadas</p>
-                      </div>
-                    </div>
-
+                    <h3 className="font-serif text-2xl lg:text-3xl font-bold text-foreground leading-tight">
+                      Acompanhamento Psicopedagógico Integrado: Escola e Família de Mãos Dadas
+                    </h3>
                     <p className="text-muted-foreground leading-relaxed">
                       No desenvolvimento de uma criança, a parceria entre a família e a escola é fundamental. 
                       Na Clínica Michelle Pitangueira, vamos além do atendimento individual, oferecendo um 
-                      acompanhamento psicopedagógico estratégico e conectado, que garante uma visão 360° do 
-                      universo da criança.
+                      acompanhamento psicopedagógico estratégico e conectado, que garante uma visão 360° do universo da criança.
                     </p>
-
                     <p className="text-muted-foreground leading-relaxed">
-                      Compreendemos que o ambiente escolar é um pilar no crescimento de seu filho(a), e um 
-                      bom diálogo entre todos os envolvidos potencializa os resultados terapêuticos.
+                      Compreendemos que o ambiente escolar é um pilar no crescimento de seu filho(a), e um bom 
+                      diálogo entre todos os envolvidos potencializa os resultados terapêuticos.
                     </p>
                   </div>
 
-                  {/* Nosso Diferencial com Tecnologia */}
+                  {/* Diferenciais Tecnológicos */}
                   <div className="space-y-6">
                     <h4 className="font-serif text-xl font-semibold text-foreground flex items-center">
-                      <Zap className="w-5 h-5 mr-2 text-accent" />
-                      Nosso Diferencial com Tecnologia Moderna
+                      <Smartphone className="w-5 h-5 mr-2 text-primary" />
+                      Nosso Diferencial com Tecnologia Moderna:
                     </h4>
 
                     {/* Comunicação Integrada */}
-                    <div className="bg-primary/5 rounded-2xl p-6 space-y-4">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                          <Smartphone className="w-5 h-5 text-primary" />
-                        </div>
-                        <div className="space-y-3">
-                          <h5 className="font-semibold text-foreground">
-                            Comunicação Integrada e Segura com a Escola
-                          </h5>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            Utilizamos um canal de comunicação dedicado e criptografado, permitindo um 
-                            intercâmbio de informações eficiente e respeitoso com os educadores (com sua 
-                            prévia autorização).
-                          </p>
-                          
-                          <div className="grid md:grid-cols-2 gap-3 mt-4">
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Monitorar desempenho e comportamento em sala de aula
-                              </span>
-                            </div>
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Compartilhar estratégias alinhadas entre consultório e escola
-                              </span>
-                            </div>
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Identificar e abordar desafios rapidamente
-                              </span>
-                            </div>
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Garantir privacidade conforme diretrizes do CFP
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="bg-primary/5 rounded-lg p-6 space-y-3">
+                      <h5 className="font-semibold text-foreground flex items-center">
+                        <Users2 className="w-4 h-4 mr-2 text-primary" />
+                        Comunicação Integrada e Segura com a Escola:
+                      </h5>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Utilizamos um canal de comunicação dedicado e criptografado, permitindo um intercâmbio 
+                        de informações eficiente e respeitoso com os educadores (com sua prévia autorização). Isso nos possibilita:
+                      </p>
+                      <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                        <li>• Monitorar o desempenho e o comportamento da criança em sala de aula de forma contínua</li>
+                        <li>• Compartilhar estratégias e intervenções alinhadas entre o consultório e o ambiente escolar</li>
+                        <li>• Identificar e abordar rapidamente quaisquer desafios que surjam</li>
+                        <li>• Garantir a privacidade e o sigilo de todas as informações trocadas, conforme as diretrizes do CFP</li>
+                      </ul>
                     </div>
 
                     {/* Prontuário Eletrônico */}
-                    <div className="bg-accent/5 rounded-2xl p-6 space-y-4">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                          <Database className="w-5 h-5 text-accent" />
-                        </div>
-                        <div className="space-y-3">
-                          <h5 className="font-semibold text-foreground">
-                            Prontuário Eletrônico Avançado e Confidencial
-                          </h5>
-                          <p className="text-sm text-muted-foreground leading-relaxed">
-                            Todos os registros do acompanhamento são mantidos em um prontuário eletrônico 
-                            seguro, com a mais alta tecnologia de proteção de dados.
-                          </p>
-                          
-                          <div className="grid md:grid-cols-2 gap-3 mt-4">
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Acesso rápido ao histórico de desenvolvimento
-                              </span>
-                            </div>
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Padronização das informações
-                              </span>
-                            </div>
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Confidencialidade total (LGPD)
-                              </span>
-                            </div>
-                            <div className="flex items-start space-x-2">
-                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
-                              <span className="text-xs text-muted-foreground">
-                                Código de Ética da Psicologia
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="bg-accent/5 rounded-lg p-6 space-y-3">
+                      <h5 className="font-semibold text-foreground flex items-center">
+                        <Database className="w-4 h-4 mr-2 text-primary" />
+                        Prontuário Eletrônico Avançado e Confidencial:
+                      </h5>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        Todos os registros do acompanhamento são mantidos em um prontuário eletrônico seguro, 
+                        com a mais alta tecnologia de proteção de dados. Isso assegura:
+                      </p>
+                      <ul className="text-sm text-muted-foreground space-y-1 ml-4">
+                        <li>• Acesso rápido e organizado ao histórico de desenvolvimento, avaliações e intervenções</li>
+                        <li>• Padronização das informações, garantindo um acompanhamento de excelência</li>
+                        <li>• Confidencialidade total, com acesso restrito e protegido (LGPD e Código de Ética)</li>
+                      </ul>
                     </div>
                   </div>
 
                   {/* Benefícios */}
                   <div className="space-y-4">
-                    <h4 className="font-serif text-lg font-semibold text-foreground flex items-center">
-                      <Heart className="w-5 h-5 mr-2 text-primary" />
-                      Benefícios para a Criança e a Família
+                    <h4 className="font-serif text-xl font-semibold text-foreground">
+                      Benefícios para a Criança e a Família:
                     </h4>
-                    
-                    <div className="grid md:grid-cols-2 gap-4">
-                      <div className="space-y-3">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <div>
-                            <p className="font-medium text-sm text-foreground">Intervenções mais assertivas</p>
-                            <p className="text-xs text-muted-foreground">Com panorama completo do desenvolvimento</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <div>
-                            <p className="font-medium text-sm text-foreground">Agilidade na identificação</p>
-                            <p className="text-xs text-muted-foreground">Ações rápidas e eficazes</p>
-                          </div>
-                        </div>
+                    <div className="grid md:grid-cols-2 gap-3">
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>Intervenções mais assertivas</span>
                       </div>
-                      <div className="space-y-3">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <div>
-                            <p className="font-medium text-sm text-foreground">Consistência nas estratégias</p>
-                            <p className="text-xs text-muted-foreground">Pais, psicólogos e escola em sintonia</p>
-                          </div>
-                        </div>
-                        <div className="flex items-start space-x-3">
-                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                          <div>
-                            <p className="font-medium text-sm text-foreground">Melhora no desempenho</p>
-                            <p className="text-xs text-muted-foreground">Acadêmico e social com suporte contínuo</p>
-                          </div>
-                        </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>Agilidade na identificação de necessidades</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>Consistência nas estratégias</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>Melhora no desempenho acadêmico</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>Tranquilidade e segurança para os pais</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary flex-shrink-0" />
+                        <span>Desenvolvimento social aprimorado</span>
                       </div>
                     </div>
                   </div>
 
-                  {/* CTA */}
+                  {/* CTAs */}
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
                     <Button 
-                      onClick={() => scrollToSection('agendamento')}
-                      className="btn-primary text-white px-6 py-3 rounded-full flex items-center justify-center space-x-2"
+                      onClick={showAgendamento}
+                      className="btn-primary text-white px-6 py-3 rounded-full flex-1"
                     >
-                      <Calendar className="w-4 h-4" />
-                      <span>Agendar Avaliação</span>
+                      <Calendar className="w-4 h-4 mr-2" />
+                      Agendar Avaliação
                     </Button>
                     <Button 
                       onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
                       variant="outline"
-                      className="border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-full"
+                      className="border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-full flex-1"
                     >
+                      <MessageCircle className="w-4 h-4 mr-2" />
                       Saiba Mais no WhatsApp
                     </Button>
                   </div>
 
-                  {/* Selo de Segurança */}
-                  <div className="flex items-center justify-center space-x-4 pt-6 border-t border-gray-100">
-                    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-                      <Shield className="w-4 h-4 text-primary" />
-                      <span>Proteção LGPD</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-                      <CheckCircle2 className="w-4 h-4 text-primary" />
-                      <span>CFP Certificado</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
-                      <Database className="w-4 h-4 text-primary" />
-                      <span>Dados Seguros</span>
-                    </div>
+                  {/* Selos de Confiança */}
+                  <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-100">
+                    <Badge variant="outline" className="text-xs">
+                      <Shield className="w-3 h-3 mr-1" />
+                      Proteção LGPD
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      <Award className="w-3 h-3 mr-1" />
+                      CFP Certificado
+                    </Badge>
+                    <Badge variant="outline" className="text-xs">
+                      <Database className="w-3 h-3 mr-1" />
+                      Dados Seguros
+                    </Badge>
                   </div>
                 </CardContent>
               </div>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Vídeos Section */}
-      <section id="video" className="section-padding bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="font-serif text-4xl font-bold text-foreground">
-                Conheça Meu Trabalho
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Veja como a terapia pode transformar vidas através de técnicas especializadas
-              </p>
-            </div>
-            
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Primeiro Vídeo - Terapia Infantil */}
-              <div className="flex flex-col h-full">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black flex-shrink-0 h-80">
-                  <video
-                    id="therapy-video-1"
-                    className="w-full h-full object-cover"
-                    poster="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800"
-                    controls={false}
-                    preload="metadata"
-                    onPlay={() => setIsVideo1Playing(true)}
-                    onPause={() => setIsVideo1Playing(false)}
-                    onEnded={() => setIsVideo1Playing(false)}
-                  >
-                    <source src={terapiaInfantilVideo} type="video/mp4" />
-                    Seu navegador não suporta o elemento de vídeo.
-                  </video>
-                  
-                  {/* Custom Play Button Overlay */}
-                  {!isVideo1Playing && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
-                      <button
-                        onClick={() => toggleVideo(1)}
-                        className="bg-white/90 hover:bg-white text-primary rounded-full p-4 transition-all duration-300 hover:scale-110 shadow-2xl"
-                      >
-                        <Play className="w-8 h-8 ml-1" />
-                      </button>
-                    </div>
-                  )}
-                  
-                  {/* Pause Button when playing */}
-                  {isVideo1Playing && (
-                    <div className="absolute top-4 right-4">
-                      <button
-                        onClick={() => toggleVideo(1)}
-                        className="bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300"
-                      >
-                        <Pause className="w-5 h-5" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                <Card className="border-0 shadow-lg bg-primary/5 flex-grow mt-6">
-                  <CardContent className="p-6 h-full flex flex-col">
-                    <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
-                      Terapia Infantil Especializada
-                    </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
-                      Através de técnicas lúdicas e adaptadas para cada faixa etária, 
-                      ajudo crianças a desenvolverem habilidades emocionais e sociais.
-                    </p>
-                    <div className="flex flex-wrap gap-3 text-sm mt-auto">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span>Ambiente acolhedor</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span>Técnicas lúdicas</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Segundo Vídeo - Foco na Ajuda e no Aprendizado */}
-              <div className="flex flex-col h-full">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black flex-shrink-0 h-80">
-                  <video
-                    id="therapy-video-2"
-                    className="w-full h-full object-cover"
-                    poster="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800"
-                    controls={false}
-                    preload="metadata"
-                    onPlay={() => setIsVideo2Playing(true)}
-                    onPause={() => setIsVideo2Playing(false)}
-                    onEnded={() => setIsVideo2Playing(false)}
-                  >
-                    <source src={mulherCriancaVideo} type="video/mp4" />
-                    Seu navegador não suporta o elemento de vídeo.
-                  </video>
-                  
-                  {/* Custom Play Button Overlay */}
-                  {!isVideo2Playing && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
-                      <button
-                        onClick={() => toggleVideo(2)}
-                        className="bg-white/90 hover:bg-white text-primary rounded-full p-4 transition-all duration-300 hover:scale-110 shadow-2xl"
-                      >
-                        <Play className="w-8 h-8 ml-1" />
-                      </button>
-                    </div>
-                  )}
-                  
-                  {/* Pause Button when playing */}
-                  {isVideo2Playing && (
-                    <div className="absolute top-4 right-4">
-                      <button
-                        onClick={() => toggleVideo(2)}
-                        className="bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300"
-                      >
-                        <Pause className="w-5 h-5" />
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                <Card className="border-0 shadow-lg bg-primary/5 flex-grow mt-6">
-                  <CardContent className="p-6 h-full flex flex-col">
-                    <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
-                      Foco na Ajuda e no Aprendizado
-                    </h3>
-                    <p className="text-muted-foreground mb-4 leading-relaxed flex-grow">
-                      O aprendizado pode ser divertido e acolhedor, acompanhado com momento de apoio e orientação, onde o incentivo faz toda a diferença no desenvolvimento de uma criança.
-                    </p>
-                    <div className="flex flex-wrap gap-3 text-sm mt-auto">
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span>Foco na Orientação</span>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span>Descoberta</span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Guia para Pais Section */}
-      <section id="guia" className="section-padding hero-gradient">
-        <div className="container mx-auto px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center space-y-4 mb-12">
-              <h2 className="font-serif text-4xl font-bold text-foreground">
-                Guia Gratuito para Pais
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Material exclusivo com dicas práticas para apoiar o desenvolvimento emocional do seu filho
-              </p>
-            </div>
-
-            <div className="grid lg:grid-cols-3 gap-8">
-              {/* Card Principal do Guia */}
-              <div className="lg:col-span-2">
-                <Card className="border-0 shadow-xl bg-white h-full">
-                  <CardContent className="p-8 space-y-6">
-                    <div className="flex items-center space-x-4 mb-6">
-                      <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-                        <BookOpen className="w-8 h-8 text-primary" />
-                      </div>
-                      <div>
-                        <h3 className="font-serif text-2xl font-bold text-foreground">
-                          Foco na Ajuda e no Aprendizado
-                        </h3>
-                        <p className="text-primary font-medium">Guia Prático para Pais</p>
-                      </div>
-                    </div>
-
-                    <div className="space-y-4">
-                      <h4 className="font-semibold text-lg text-foreground">O que você encontrará no guia:</h4>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <ul className="space-y-3">
-                          <li className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground text-sm">Estratégias para criar um ambiente de aprendizado acolhedor</span>
-                          </li>
-                          <li className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground text-sm">Técnicas de incentivo e orientação positiva</span>
-                          </li>
-                          <li className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground text-sm">Como identificar necessidades emocionais da criança</span>
-                          </li>
-                        </ul>
-                        <ul className="space-y-3">
-                          <li className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground text-sm">Atividades práticas para fortalecer o vínculo familiar</span>
-                          </li>
-                          <li className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground text-sm">Sinais de quando buscar ajuda profissional</span>
-                          </li>
-                          <li className="flex items-start space-x-3">
-                            <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-muted-foreground text-sm">Exercícios de comunicação efetiva</span>
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-
-                    <div className="bg-primary/5 rounded-2xl p-6 space-y-4">
-                      <div className="flex items-center space-x-3">
-                        <FileText className="w-6 h-6 text-primary" />
-                        <span className="font-semibold text-foreground">Material Gratuito</span>
-                      </div>
-                      <p className="text-sm text-muted-foreground">
-                        Este guia foi desenvolvido com base em anos de experiência clínica e contém 
-                        informações valiosas para pais que desejam apoiar melhor o desenvolvimento 
-                        emocional de seus filhos.
-                      </p>
-                    </div>
-
-                    <Button 
-                      onClick={downloadGuide}
-                      className="btn-primary text-white px-8 py-3 rounded-full text-lg w-full flex items-center justify-center space-x-2"
-                    >
-                      <Download className="w-5 h-5" />
-                      <span>Baixar Guia Gratuito (PDF)</span>
-                    </Button>
-                  </CardContent>
-                </Card>
-              </div>
-
-              {/* Sidebar com CTA e Informações Adicionais */}
-              <div className="space-y-6">
-                {/* Preview com Criança */}
-                <Card className="border-0 shadow-xl bg-white">
-                  <CardContent className="p-6">
-                    <div className="relative rounded-2xl overflow-hidden mb-4">
-                      <img 
-                        src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                        alt="Criança aprendendo com apoio" 
-                        className="w-full h-40 object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                      <div className="absolute bottom-3 left-3 text-white">
-                        <p className="text-sm font-medium">Foco na Orientação</p>
-                      </div>
-                    </div>
-                    <h4 className="font-semibold text-foreground mb-2">Aprendizado Acolhedor</h4>
-                    <p className="text-sm text-muted-foreground">
-                      Veja como o incentivo faz toda a diferença no desenvolvimento infantil.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                {/* CTA Card */}
-                <Card className="border-0 shadow-xl bg-gradient-to-br from-primary/10 to-accent/10">
-                  <CardContent className="p-6 text-center space-y-4">
-                    <h4 className="font-serif text-lg font-bold text-foreground">
-                      Precisa de Orientação Personalizada?
-                    </h4>
-                    <p className="text-sm text-muted-foreground">
-                      Após ler o guia, se você tiver dúvidas específicas sobre o desenvolvimento 
-                      do seu filho, estou aqui para ajudar.
-                    </p>
-                    <div className="space-y-3">
-                      <Button 
-                        onClick={() => scrollToSection('agendamento')}
-                        className="btn-primary text-white px-4 py-2 rounded-full w-full text-sm flex items-center justify-center space-x-2"
-                      >
-                        <Calendar className="w-4 h-4" />
-                        <span>Agendar Online</span>
-                      </Button>
-                      <Button 
-                        onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
-                        variant="outline"
-                        className="border-primary text-primary hover:bg-primary hover:text-white px-4 py-2 rounded-full w-full text-sm"
-                      >
-                        WhatsApp
-                      </Button>
-                    </div>
-                    <p className="text-xs text-muted-foreground">
-                      <strong>Primeira consulta:</strong> Avaliação inicial de 60 minutos
-                    </p>
-                  </CardContent>
-                </Card>
-
-                {/* Estatísticas */}
-                <Card className="border-0 shadow-xl bg-white">
-                  <CardContent className="p-6 space-y-4">
-                    <h4 className="font-semibold text-foreground text-center">Resultados Comprovados</h4>
-                    <div className="space-y-3">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-primary">95%</div>
-                        <div className="text-xs text-muted-foreground">Pais relatam melhoria na comunicação</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-primary">8+</div>
-                        <div className="text-xs text-muted-foreground">Anos de experiência clínica</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-primary">500+</div>
-                        <div className="text-xs text-muted-foreground">Famílias atendidas</div>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -995,18 +867,17 @@ function App() {
 
                 <div className="bg-primary/5 rounded-2xl p-6">
                   <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
-                    Agendamento Online
+                    Primeira Consulta
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Agende sua consulta de forma rápida e segura através do nosso sistema online. 
-                    Escolha data, horário e até mesmo efetue o pagamento antecipado.
+                    Na primeira sessão, faremos uma avaliação inicial para entender 
+                    suas necessidades e definir o melhor caminho para o seu tratamento.
                   </p>
                   <Button 
-                    onClick={() => scrollToSection('agendamento')}
-                    className="btn-primary text-white px-6 py-2 rounded-full flex items-center space-x-2"
+                    onClick={showAgendamento}
+                    className="btn-primary text-white px-6 py-2 rounded-full"
                   >
-                    <Calendar className="w-4 h-4" />
-                    <span>Agendar Online</span>
+                    Agendar Agora
                   </Button>
                 </div>
               </div>

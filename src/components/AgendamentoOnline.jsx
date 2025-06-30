@@ -92,18 +92,18 @@ const AgendamentoOnline = () => {
       descricao: 'Sessão de terapia individual'
     },
     {
-      id: 'terapia-casal',
-      nome: 'Terapia de Casal',
-      duracao: '60 min',
-      valor: 'R$ 220',
-      descricao: 'Sessão para casais'
-    },
-    {
       id: 'terapia-infantil',
       nome: 'Terapia Infantil',
       duracao: '45 min',
       valor: 'R$ 160',
       descricao: 'Atendimento especializado para crianças'
+    },
+    {
+      id: 'acompanhamento-psicopedagogico',
+      nome: 'Acompanhamento Psicopedagógico',
+      duracao: '50 min',
+      valor: 'R$ 200',
+      descricao: 'Integração escola-família com tecnologia'
     }
   ]
 
