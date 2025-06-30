@@ -170,3 +170,24 @@
     padding: 3rem 0;
   }
 }
+
+/* Ocultar navegação completamente em dispositivos móveis */
+.mobile-hidden {
+  display: none !important;
+}
+
+/* Centralizar título quando for mobile */
+.mobile-center {
+  justify-content: center !important;
+}
+
+/* Ocultar elementos quando for mobile detectado via body class */
+.is-mobile nav,
+.is-mobile .md\\:hidden,
+.is-mobile button[class*="md:hidden"] {
+  display: none !important;
+}
+
+.is-mobile header > div > div {
+  justify-content: center !important;
+}

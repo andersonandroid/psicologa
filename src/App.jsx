@@ -61,6 +61,13 @@ function App() {
     const checkIfMobile = () => {
       const isMobileDevice = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
       setIsMobile(isMobileDevice)
+      
+      // Aplicar classe ao body para CSS global
+      if (isMobileDevice) {
+        document.body.classList.add('is-mobile')
+      } else {
+        document.body.classList.remove('is-mobile')
+      }
     }
 
     checkIfMobile()
@@ -76,13 +83,13 @@ function App() {
       {/* Header */}
       <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-border z-50">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
+          <div className={`flex items-center ${isMobile ? 'mobile-center' : 'justify-between'}`}>
             <div className="font-serif text-2xl font-semibold text-foreground">
               Dra. Michelle Pitangueira
             </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
+            <nav className={`hidden md:flex items-center space-x-8 ${isMobile ? 'mobile-hidden' : ''}`}>
               <button 
                 onClick={() => scrollToSection('inicio')}
                 className="text-foreground hover:text-primary transition-colors"
@@ -133,12 +140,11 @@ function App() {
               </Button>
             </nav>
 
-            {/* Mobile Menu Button - Hidden on mobile when detected */}
-            {!isMobile && (
-              <button 
-                onClick={toggleMobileMenu}
-                className="md:hidden relative z-50 p-2 rounded-lg hover:bg-gray-100 transition-colors"
-              >
+            {/* Mobile Menu Button */}
+            <button 
+              onClick={toggleMobileMenu}
+              className={`md:hidden relative z-50 p-2 rounded-lg hover:bg-gray-100 transition-colors ${isMobile ? 'mobile-hidden' : ''}`}
+            >
               <div className="w-6 h-6 relative flex flex-col justify-center items-center">
                 <span 
                   className={`block h-0.5 w-6 bg-foreground transition-all duration-300 ease-in-out ${
@@ -156,28 +162,24 @@ function App() {
                   }`}
                 />
               </div>
-              </button>
-            )}
+            </button>
           </div>
         </div>
 
         {/* Mobile Navigation Overlay */}
-        {!isMobile && (
-          <div 
-            className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
-              mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-            }`}
-            onClick={() => setMobileMenuOpen(false)}
-          />
-        )}
+        <div 
+          className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+            mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          } ${isMobile ? 'mobile-hidden' : ''}`}
+          onClick={() => setMobileMenuOpen(false)}
+        />
 
         {/* Mobile Navigation Menu */}
-        {!isMobile && (
-          <div 
-            className={`md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
-              mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-            }`}
-          >
+        <div 
+          className={`md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
+            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          } ${isMobile ? 'mobile-hidden' : ''}`}
+        >
           {/* Header do Menu Mobile */}
           <div className="flex items-center justify-between p-6 border-b border-gray-100">
             <div className="font-serif text-lg font-semibold text-foreground">
@@ -261,8 +263,7 @@ function App() {
               </div>
             </div>
           </div>
-          </div>
-        )}
+        </div>
       </header>
 
       {/* Hero Section */}
