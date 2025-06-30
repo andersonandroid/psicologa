@@ -448,7 +448,7 @@ function App() {
                 </Card>
               </div>
 
-              {/* Segundo Vídeo - Mulher e Criança */}
+              {/* Segundo Vídeo - Foco na Ajuda e no Aprendizado */}
               <div className="space-y-6">
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
                   <video
@@ -493,20 +493,19 @@ function App() {
                 <Card className="border-0 shadow-lg bg-primary/5">
                   <CardContent className="p-6">
                     <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
-                      Terapia Familiar e Materna
+                      Foco na Ajuda e no Aprendizado
                     </h3>
                     <p className="text-muted-foreground mb-4 leading-relaxed">
-                      Apoio especializado para mães e famílias, fortalecendo vínculos 
-                      e promovendo o bem-estar emocional de todos os envolvidos.
+                      Veja como o aprendizado pode ser divertido e acolhedor! Neste vídeo, você acompanha um momento de apoio e orientação, onde o incentivo faz toda a diferença no desenvolvimento de uma criança.
                     </p>
                     <div className="flex flex-wrap gap-3 text-sm">
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span>Vínculo mãe-bebê</span>
+                        <span>Foco na Orientação</span>
                       </div>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-primary rounded-full"></div>
-                        <span>Orientação familiar</span>
+                        <span>Descoberta</span>
                       </div>
                     </div>
                   </CardContent>
