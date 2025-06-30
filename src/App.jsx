@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Play, Pause, Download, FileText, BookOpen, Calendar } from 'lucide-react'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Play, Pause, Download, FileText, BookOpen, Calendar, Shield, Smartphone, Database, Users2, CheckCircle2, Zap } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import terapiaCriancasImg from './assets/terapia-criancas-real copy.jpg'
 import terapiaInfantilVideo from './assets/Terapia_Infantil_Criado.mp4'
@@ -308,123 +308,244 @@ function App() {
         </div>
       </section>
 
-      {/* Serviços Section */}
+      {/* Serviços Section - Acompanhamento Psicopedagógico Integrado */}
       <section id="servicos" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="font-serif text-4xl font-bold text-foreground">
-                Serviços
+                Nosso Diferencial
               </h2>
               <p className="text-xl text-muted-foreground">
-                Oferecemos diferentes modalidades de atendimento para melhor atender suas necessidades
+                Inovação tecnológica a serviço do desenvolvimento infantil
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* Card: Terapia Individual */}
-              <Card className="card-hover border-0 shadow-lg bg-white">
-                <CardContent className="p-8 space-y-6">
-                  <img 
-                    src="https://images.pexels.com/photos/7176026/pexels-photo-7176026.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Terapia Individual" 
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <div className="space-y-4">
-                    <h3 className="font-serif text-2xl font-semibold text-foreground">
-                      Terapia Individual
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Atendimento personalizado focado em suas necessidades específicas. 
-                      Trabalhamos juntos para identificar padrões, desenvolver estratégias 
-                      e promover mudanças positivas em sua vida.
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Sessões de 50 minutos</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Presencial ou online</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Horários flexíveis</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Card: Terapia de Casal */}
-              <Card className="card-hover border-0 shadow-lg bg-white">
-                <CardContent className="p-8 space-y-6">
-                  <img 
-                    src="https://images.pexels.com/photos/7176319/pexels-photo-7176319.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                    alt="Terapia de Casal" 
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <div className="space-y-4">
-                    <h3 className="font-serif text-2xl font-semibold text-foreground">
-                      Terapia de Casal
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Espaço seguro para casais trabalharem questões relacionais, 
-                      melhorarem a comunicação e fortalecerem vínculos afetivos.
-                    </p>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Sessões de 60 minutos</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Abordagem sistêmica</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Foco na comunicação</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Card: Terapia Infantil */}
-              <Card className="card-hover border-0 shadow-lg bg-white">
-                <CardContent className="p-8 space-y-6">
+            
+            {/* Card Principal - Acompanhamento Psicopedagógico */}
+            <Card className="card-hover border-0 shadow-2xl bg-white overflow-hidden">
+              <div className="grid lg:grid-cols-2 gap-0">
+                {/* Imagem */}
+                <div className="relative h-80 lg:h-auto">
                   <img 
                     src={terapiaCriancasImg} 
-                    alt="Terapia Infantil" 
-                    className="w-full h-48 object-cover rounded-lg mb-4"
+                    alt="Acompanhamento Psicopedagógico Integrado" 
+                    className="w-full h-full object-cover"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-transparent"></div>
+                  <div className="absolute top-6 left-6">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+                      <Smartphone className="w-4 h-4 text-primary" />
+                      <span className="text-sm font-medium text-foreground">Tecnologia Moderna</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Conteúdo */}
+                <CardContent className="p-8 lg:p-12 space-y-8">
                   <div className="space-y-4">
-                    <h3 className="font-serif text-2xl font-semibold text-foreground">
-                      Terapia Infantil
-                    </h3>
-                    <p className="text-muted-foreground">
-                      Atendimento lúdico e adaptado para crianças, 
-                      ajudando-as a expressar emoções e desenvolver habilidades sociais 
-                      em um ambiente seguro e divertido.
+                    <div className="flex items-center space-x-3 mb-4">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Users2 className="w-6 h-6 text-primary" />
+                      </div>
+                      <div>
+                        <h3 className="font-serif text-2xl font-bold text-foreground">
+                          Acompanhamento Psicopedagógico Integrado
+                        </h3>
+                        <p className="text-primary font-medium">Escola e Família de Mãos Dadas</p>
+                      </div>
+                    </div>
+
+                    <p className="text-muted-foreground leading-relaxed">
+                      No desenvolvimento de uma criança, a parceria entre a família e a escola é fundamental. 
+                      Na Clínica Michelle Pitangueira, vamos além do atendimento individual, oferecendo um 
+                      acompanhamento psicopedagógico estratégico e conectado, que garante uma visão 360° do 
+                      universo da criança.
+                    </p>
+
+                    <p className="text-muted-foreground leading-relaxed">
+                      Compreendemos que o ambiente escolar é um pilar no crescimento de seu filho(a), e um 
+                      bom diálogo entre todos os envolvidos potencializa os resultados terapêuticos.
                     </p>
                   </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Sessões adaptadas à idade</span>
+
+                  {/* Nosso Diferencial com Tecnologia */}
+                  <div className="space-y-6">
+                    <h4 className="font-serif text-xl font-semibold text-foreground flex items-center">
+                      <Zap className="w-5 h-5 mr-2 text-accent" />
+                      Nosso Diferencial com Tecnologia Moderna
+                    </h4>
+
+                    {/* Comunicação Integrada */}
+                    <div className="bg-primary/5 rounded-2xl p-6 space-y-4">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <Smartphone className="w-5 h-5 text-primary" />
+                        </div>
+                        <div className="space-y-3">
+                          <h5 className="font-semibold text-foreground">
+                            Comunicação Integrada e Segura com a Escola
+                          </h5>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Utilizamos um canal de comunicação dedicado e criptografado, permitindo um 
+                            intercâmbio de informações eficiente e respeitoso com os educadores (com sua 
+                            prévia autorização).
+                          </p>
+                          
+                          <div className="grid md:grid-cols-2 gap-3 mt-4">
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Monitorar desempenho e comportamento em sala de aula
+                              </span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Compartilhar estratégias alinhadas entre consultório e escola
+                              </span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Identificar e abordar desafios rapidamente
+                              </span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-primary mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Garantir privacidade conforme diretrizes do CFP
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Terapia através do brincar</span>
+
+                    {/* Prontuário Eletrônico */}
+                    <div className="bg-accent/5 rounded-2xl p-6 space-y-4">
+                      <div className="flex items-start space-x-4">
+                        <div className="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                          <Database className="w-5 h-5 text-accent" />
+                        </div>
+                        <div className="space-y-3">
+                          <h5 className="font-semibold text-foreground">
+                            Prontuário Eletrônico Avançado e Confidencial
+                          </h5>
+                          <p className="text-sm text-muted-foreground leading-relaxed">
+                            Todos os registros do acompanhamento são mantidos em um prontuário eletrônico 
+                            seguro, com a mais alta tecnologia de proteção de dados.
+                          </p>
+                          
+                          <div className="grid md:grid-cols-2 gap-3 mt-4">
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Acesso rápido ao histórico de desenvolvimento
+                              </span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Padronização das informações
+                              </span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Confidencialidade total (LGPD)
+                              </span>
+                            </div>
+                            <div className="flex items-start space-x-2">
+                              <CheckCircle2 className="w-4 h-4 text-accent mt-0.5 flex-shrink-0" />
+                              <span className="text-xs text-muted-foreground">
+                                Código de Ética da Psicologia
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <div className="w-2 h-2 bg-primary rounded-full"></div>
-                      <span>Orientação para pais</span>
+                  </div>
+
+                  {/* Benefícios */}
+                  <div className="space-y-4">
+                    <h4 className="font-serif text-lg font-semibold text-foreground flex items-center">
+                      <Heart className="w-5 h-5 mr-2 text-primary" />
+                      Benefícios para a Criança e a Família
+                    </h4>
+                    
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div className="space-y-3">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <div>
+                            <p className="font-medium text-sm text-foreground">Intervenções mais assertivas</p>
+                            <p className="text-xs text-muted-foreground">Com panorama completo do desenvolvimento</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <div>
+                            <p className="font-medium text-sm text-foreground">Agilidade na identificação</p>
+                            <p className="text-xs text-muted-foreground">Ações rápidas e eficazes</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <div>
+                            <p className="font-medium text-sm text-foreground">Consistência nas estratégias</p>
+                            <p className="text-xs text-muted-foreground">Pais, psicólogos e escola em sintonia</p>
+                          </div>
+                        </div>
+                        <div className="flex items-start space-x-3">
+                          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          <div>
+                            <p className="font-medium text-sm text-foreground">Melhora no desempenho</p>
+                            <p className="text-xs text-muted-foreground">Acadêmico e social com suporte contínuo</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                    <Button 
+                      onClick={() => scrollToSection('agendamento')}
+                      className="btn-primary text-white px-6 py-3 rounded-full flex items-center justify-center space-x-2"
+                    >
+                      <Calendar className="w-4 h-4" />
+                      <span>Agendar Avaliação</span>
+                    </Button>
+                    <Button 
+                      onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
+                      variant="outline"
+                      className="border-primary text-primary hover:bg-primary hover:text-white px-6 py-3 rounded-full"
+                    >
+                      Saiba Mais no WhatsApp
+                    </Button>
+                  </div>
+
+                  {/* Selo de Segurança */}
+                  <div className="flex items-center justify-center space-x-4 pt-6 border-t border-gray-100">
+                    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                      <Shield className="w-4 h-4 text-primary" />
+                      <span>Proteção LGPD</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                      <CheckCircle2 className="w-4 h-4 text-primary" />
+                      <span>CFP Certificado</span>
+                    </div>
+                    <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+                      <Database className="w-4 h-4 text-primary" />
+                      <span>Dados Seguros</span>
                     </div>
                   </div>
                 </CardContent>
-              </Card>
-            </div>
+              </div>
+            </Card>
           </div>
         </div>
       </section>
