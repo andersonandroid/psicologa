@@ -89,53 +89,108 @@ function App() {
             {/* Mobile Menu Button */}
             <button 
               onClick={toggleMobileMenu}
-              className="md:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
+              className="md:hidden relative z-50 p-2 rounded-lg hover:bg-gray-100 transition-colors"
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-foreground" />
-              ) : (
-                <Menu className="w-6 h-6 text-foreground" />
-              )}
+              <div className="w-6 h-6 relative flex flex-col justify-center items-center">
+                <span 
+                  className={`block h-0.5 w-6 bg-foreground transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen ? 'rotate-45 translate-y-0' : '-translate-y-1.5'
+                  }`}
+                />
+                <span 
+                  className={`block h-0.5 w-6 bg-foreground transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen ? 'opacity-0' : 'opacity-100'
+                  }`}
+                />
+                <span 
+                  className={`block h-0.5 w-6 bg-foreground transition-all duration-300 ease-in-out ${
+                    mobileMenuOpen ? '-rotate-45 -translate-y-0' : 'translate-y-1.5'
+                  }`}
+                />
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Overlay */}
+        <div 
+          className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+            mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}
+          onClick={() => setMobileMenuOpen(false)}
+        />
+
+        {/* Mobile Navigation Menu */}
+        <div 
+          className={`md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
+            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          {/* Header do Menu Mobile */}
+          <div className="flex items-center justify-between p-6 border-b border-gray-100">
+            <div className="font-serif text-lg font-semibold text-foreground">
+              Menu
+            </div>
+            <button 
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            >
+              <X className="w-5 h-5 text-foreground" />
             </button>
           </div>
 
-          {/* Mobile Navigation Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden mt-4 py-4 border-t border-border bg-white/95 backdrop-blur-sm rounded-lg shadow-lg">
-              <nav className="flex flex-col space-y-4 px-4">
-                <button 
-                  onClick={() => scrollToSection('inicio')}
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                >
-                  Início
-                </button>
-                <button 
-                  onClick={() => scrollToSection('sobre')}
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                >
-                  Sobre
-                </button>
-                <button 
-                  onClick={() => scrollToSection('servicos')}
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                >
-                  Serviços
-                </button>
-                <button 
-                  onClick={() => scrollToSection('contato')}
-                  className="text-left text-foreground hover:text-primary transition-colors py-2"
-                >
-                  Contato
-                </button>
-                <Button 
-                  onClick={() => scrollToSection('contato')}
-                  className="btn-primary text-white px-6 py-2 rounded-full mt-4"
-                >
-                  Agendar Consulta
-                </Button>
-              </nav>
+          {/* Navegação Mobile */}
+          <nav className="flex flex-col p-6 space-y-1">
+            <button 
+              onClick={() => scrollToSection('inicio')}
+              className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+            >
+              <span className="text-base font-medium">Início</span>
+            </button>
+            <button 
+              onClick={() => scrollToSection('sobre')}
+              className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+            >
+              <span className="text-base font-medium">Sobre</span>
+            </button>
+            <button 
+              onClick={() => scrollToSection('servicos')}
+              className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+            >
+              <span className="text-base font-medium">Serviços</span>
+            </button>
+            <button 
+              onClick={() => scrollToSection('contato')}
+              className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+            >
+              <span className="text-base font-medium">Contato</span>
+            </button>
+            
+            {/* Separador */}
+            <div className="my-4 border-t border-gray-100"></div>
+            
+            {/* Botão CTA */}
+            <Button 
+              onClick={() => scrollToSection('contato')}
+              className="btn-primary text-white px-6 py-3 rounded-lg text-base font-medium w-full"
+            >
+              Agendar Consulta
+            </Button>
+          </nav>
+
+          {/* Informações de Contato no Menu Mobile */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 border-t border-gray-100 bg-gray-50">
+            <div className="space-y-3">
+              <div className="flex items-center space-x-3 text-sm text-muted-foreground">
+                <Phone className="w-4 h-4" />
+                <span>(11) 99999-9999</span>
+              </div>
+              <div className="flex items-center space-x-3 text-sm text-muted-foreground">
+                <Mail className="w-4 h-4" />
+                <span>contato@michellepitangueira.com.br</span>
+              </div>
             </div>
-          )}
+          </div>
         </div>
       </header>
 
