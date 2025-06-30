@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -19,6 +19,7 @@ function App() {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [agendamentoOpen, setAgendamentoOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -46,8 +47,29 @@ function App() {
   }
 
   const abrirAgendamento = () => {
-    setAgendamentoOpen(true)
+    if (isMobile) {
+      // No mobile, rola para a seção de agendamento
+      scrollToSection('agendamento')
+    } else {
+      // No desktop, abre o modal
+      setAgendamentoOpen(true)
+    }
   }
+
+  // Detectar se é mobile
+  useEffect(() => {
+    const checkIfMobile = () => {
+      const isMobileDevice = window.innerWidth <= 768 || /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+      setIsMobile(isMobileDevice)
+    }
+
+    checkIfMobile()
+    window.addEventListener('resize', checkIfMobile)
+
+    return () => {
+      window.removeEventListener('resize', checkIfMobile)
+    }
+  }, [])
 
   return (
     <div className="min-h-screen bg-background">
@@ -92,6 +114,12 @@ function App() {
                 Guia
               </button>
               <button 
+                onClick={() => scrollToSection('agendamento')}
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Agendamento
+              </button>
+              <button 
                 onClick={() => scrollToSection('contato')}
                 className="text-foreground hover:text-primary transition-colors"
               >
@@ -105,11 +133,12 @@ function App() {
               </Button>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button 
-              onClick={toggleMobileMenu}
-              className="md:hidden relative z-50 p-2 rounded-lg hover:bg-gray-100 transition-colors"
-            >
+            {/* Mobile Menu Button - Hidden on mobile when detected */}
+            {!isMobile && (
+              <button 
+                onClick={toggleMobileMenu}
+                className="md:hidden relative z-50 p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              >
               <div className="w-6 h-6 relative flex flex-col justify-center items-center">
                 <span 
                   className={`block h-0.5 w-6 bg-foreground transition-all duration-300 ease-in-out ${
@@ -127,24 +156,28 @@ function App() {
                   }`}
                 />
               </div>
-            </button>
+              </button>
+            )}
           </div>
         </div>
 
         {/* Mobile Navigation Overlay */}
-        <div 
-          className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
-            mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-          }`}
-          onClick={() => setMobileMenuOpen(false)}
-        />
+        {!isMobile && (
+          <div 
+            className={`md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+              mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+            }`}
+            onClick={() => setMobileMenuOpen(false)}
+          />
+        )}
 
         {/* Mobile Navigation Menu */}
-        <div 
-          className={`md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
-            mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
-        >
+        {!isMobile && (
+          <div 
+            className={`md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ease-in-out ${
+              mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+          >
           {/* Header do Menu Mobile */}
           <div className="flex items-center justify-between p-6 border-b border-gray-100">
             <div className="font-serif text-lg font-semibold text-foreground">
@@ -184,18 +217,24 @@ function App() {
             >
               <span className="text-base font-medium">Meus Trabalhos</span>
             </button>
-            <button 
-              onClick={() => scrollToSection('guia')}
-              className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
-            >
-              <span className="text-base font-medium">Guia</span>
-            </button>
-            <button 
-              onClick={() => scrollToSection('contato')}
-              className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
-            >
-              <span className="text-base font-medium">Contato</span>
-            </button>
+                          <button 
+                onClick={() => scrollToSection('guia')}
+                className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+              >
+                <span className="text-base font-medium">Guia</span>
+              </button>
+              <button 
+                onClick={() => scrollToSection('agendamento')}
+                className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+              >
+                <span className="text-base font-medium">Agendamento</span>
+              </button>
+              <button 
+                onClick={() => scrollToSection('contato')}
+                className="flex items-center px-4 py-3 text-left text-foreground hover:bg-primary/10 hover:text-primary rounded-lg transition-all duration-200"
+              >
+                <span className="text-base font-medium">Contato</span>
+              </button>
             
             {/* Separador */}
             <div className="my-4 border-t border-gray-100"></div>
@@ -222,7 +261,8 @@ function App() {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -640,8 +680,25 @@ function App() {
         </div>
       </section>
 
+      {/* Agendamento Section */}
+      <section id="agendamento" className="section-padding bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center space-y-4 mb-8">
+              <h2 className="font-serif text-4xl font-bold text-foreground">
+                Agendamento Online
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Agende sua consulta de forma rápida e segura
+              </p>
+            </div>
+            <AgendamentoOnline />
+          </div>
+        </div>
+      </section>
+
       {/* Contato Section */}
-      <section id="contato" className="section-padding bg-white">
+      <section id="contato" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
@@ -800,15 +857,17 @@ function App() {
         </div>
       </section>
 
-      {/* Modal de Agendamento */}
-      <Dialog open={agendamentoOpen} onOpenChange={setAgendamentoOpen}>
-        <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
-            <DialogTitle className="sr-only">Agendamento Online</DialogTitle>
-          </DialogHeader>
-          <AgendamentoOnline />
-        </DialogContent>
-      </Dialog>
+      {/* Modal de Agendamento - Apenas no Desktop */}
+      {!isMobile && (
+        <Dialog open={agendamentoOpen} onOpenChange={setAgendamentoOpen}>
+          <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto">
+            <DialogHeader>
+              <DialogTitle className="sr-only">Agendamento Online</DialogTitle>
+            </DialogHeader>
+            <AgendamentoOnline />
+          </DialogContent>
+        </Dialog>
+      )}
 
       {/* WhatsApp Button */}
       <a 
