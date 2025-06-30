@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
 import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
+import terapiaCriancasImg from './assets/terapia-criancas-real copy.jpg'
 import './App.css'
 
 function App() {
@@ -287,7 +288,7 @@ function App() {
               <Card className="card-hover border-0 shadow-lg bg-white">
                 <CardContent className="p-8 space-y-6">
                   <img 
-                    src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                    src={terapiaCriancasImg} 
                     alt="Terapia Infantil" 
                     className="w-full h-48 object-cover rounded-lg mb-4"
                   />
