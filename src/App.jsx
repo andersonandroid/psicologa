@@ -496,7 +496,7 @@ function App() {
                       Foco na Ajuda e no Aprendizado
                     </h3>
                     <p className="text-muted-foreground mb-4 leading-relaxed">
-                      Veja como o aprendizado pode ser divertido e acolhedor! Neste vídeo, você acompanha um momento de apoio e orientação, onde o incentivo faz toda a diferença no desenvolvimento de uma criança.
+                      O aprendizado pode ser divertido e acolhedor, acompanhado com momento de apoio e orientação, onde o incentivo faz toda a diferença no desenvolvimento de uma criança.
                     </p>
                     <div className="flex flex-wrap gap-3 text-sm">
                       <div className="flex items-center space-x-2">
