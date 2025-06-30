@@ -6,7 +6,6 @@ import { Textarea } from '@/components/ui/textarea.jsx'
 
 import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award, Play } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
-import AgendamentoOnline from './components/AgendamentoOnline.jsx'
 import './App.css'
 
 function App() {
@@ -46,8 +45,8 @@ function App() {
   }
 
   const abrirAgendamento = () => {
-    // Sempre rola para a seção de agendamento (sem modal)
-    scrollToSection('agendamento')
+    // Abre a página dedicada de agendamento
+    window.open('/agendamento', '_blank')
   }
 
   // Detectar se é mobile
@@ -671,22 +670,7 @@ function App() {
         </div>
       </section>
 
-      {/* Agendamento Section */}
-      <section id="agendamento" className="section-padding bg-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center space-y-4 mb-8">
-              <h2 className="font-serif text-4xl font-bold text-foreground">
-                Agendamento Online
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Agende sua consulta de forma rápida e segura
-              </p>
-            </div>
-            <AgendamentoOnline />
-          </div>
-        </div>
-      </section>
+
 
       {/* Contato Section */}
       <section id="contato" className="section-padding hero-gradient">
