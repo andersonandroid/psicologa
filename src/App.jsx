@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
@@ -9,6 +10,8 @@ import psicologaFoto from './assets/psicologa-foto.jpg'
 import './App.css'
 
 function App() {
+  const navigate = useNavigate()
+  
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -45,8 +48,8 @@ function App() {
   }
 
   const abrirAgendamento = () => {
-    // Abre a página dedicada de agendamento
-    window.open('/agendamento', '_blank')
+    // Navega para a página dedicada de agendamento
+    navigate('/agendamento')
   }
 
   // Detectar se é mobile
