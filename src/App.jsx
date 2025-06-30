@@ -3,12 +3,13 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Play, Pause, Download, FileText, BookOpen } from 'lucide-react'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Play, Pause, Download, FileText, BookOpen, Calendar } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import terapiaCriancasImg from './assets/terapia-criancas-real copy.jpg'
 import terapiaInfantilVideo from './assets/Terapia_Infantil_Criado.mp4'
 import mulherCriancaVideo from './assets/Pronto_Mulher_e_Criança.mp4'
 import guiaPaisPDF from './assets/Guia Rápido_ Foco na Ajuda e no Aprendizado para Pais.pdf'
+import AgendamentoOnline from './components/AgendamentoOnline.jsx'
 import './App.css'
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
 
   const [isVideo1Playing, setIsVideo1Playing] = useState(false)
   const [isVideo2Playing, setIsVideo2Playing] = useState(false)
+  const [showAgendamento, setShowAgendamento] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -39,6 +41,11 @@ function App() {
   }
 
   const scrollToSection = (sectionId) => {
+    if (sectionId === 'agendamento') {
+      setShowAgendamento(true)
+      return
+    }
+    setShowAgendamento(false)
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
@@ -84,6 +91,40 @@ function App() {
     document.body.appendChild(link)
     link.click()
     document.body.removeChild(link)
+  }
+
+  // Se showAgendamento for true, mostra apenas o sistema de agendamento
+  if (showAgendamento) {
+    return (
+      <div className="min-h-screen bg-background">
+        {/* Header simplificado para agendamento */}
+        <header className="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-border z-50">
+          <div className="container mx-auto px-4 py-4">
+            <div className="flex items-center justify-between">
+              <button 
+                onClick={() => setShowAgendamento(false)}
+                className="font-serif text-2xl font-semibold text-foreground hover:text-primary transition-colors"
+              >
+                Dra. Michelle Pitangueira
+              </button>
+              <Button 
+                onClick={() => setShowAgendamento(false)}
+                variant="outline"
+                className="px-4 py-2 rounded-full"
+              >
+                Voltar ao Site
+              </Button>
+            </div>
+          </div>
+        </header>
+
+        <main className="pt-24 section-padding">
+          <div className="container mx-auto px-4">
+            <AgendamentoOnline />
+          </div>
+        </main>
+      </div>
+    )
   }
 
   return (
@@ -133,17 +174,19 @@ function App() {
                 Contato
               </button>
               <Button 
-                onClick={() => scrollToSection('contato')}
-                className="btn-primary text-white px-6 py-2 rounded-full"
+                onClick={() => scrollToSection('agendamento')}
+                className="btn-primary text-white px-6 py-2 rounded-full flex items-center space-x-2"
               >
-                Agendar Consulta
+                <Calendar className="w-4 h-4" />
+                <span>Agendar Online</span>
               </Button>
             </nav>
             <Button 
-              onClick={() => scrollToSection('contato')}
-              className="md:hidden btn-primary text-white px-4 py-2 rounded-full"
+              onClick={() => scrollToSection('agendamento')}
+              className="md:hidden btn-primary text-white px-4 py-2 rounded-full flex items-center space-x-2"
             >
-              Contato
+              <Calendar className="w-4 h-4" />
+              <span>Agendar</span>
             </Button>
           </div>
         </div>
@@ -166,10 +209,11 @@ function App() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button 
-                  onClick={() => scrollToSection('contato')}
-                  className="btn-primary text-white px-8 py-3 rounded-full text-lg"
+                  onClick={() => scrollToSection('agendamento')}
+                  className="btn-primary text-white px-8 py-3 rounded-full text-lg flex items-center justify-center space-x-2"
                 >
-                  Agendar Consulta
+                  <Calendar className="w-5 h-5" />
+                  <span>Agendar Online</span>
                 </Button>
                 <Button 
                   variant="outline" 
@@ -186,7 +230,7 @@ function App() {
                 </div>
                 <div className="flex items-center space-x-2">
                   <Clock className="w-5 h-5 text-accent" />
-                  <span>Horários flexíveis</span>
+                  <span>Agendamento online</span>
                 </div>
               </div>
             </div>
@@ -654,10 +698,11 @@ function App() {
                     </p>
                     <div className="space-y-3">
                       <Button 
-                        onClick={() => scrollToSection('contato')}
-                        className="btn-primary text-white px-4 py-2 rounded-full w-full text-sm"
+                        onClick={() => scrollToSection('agendamento')}
+                        className="btn-primary text-white px-4 py-2 rounded-full w-full text-sm flex items-center justify-center space-x-2"
                       >
-                        Agendar Consulta
+                        <Calendar className="w-4 h-4" />
+                        <span>Agendar Online</span>
                       </Button>
                       <Button 
                         onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
@@ -668,7 +713,7 @@ function App() {
                       </Button>
                     </div>
                     <p className="text-xs text-muted-foreground">
-                      <strong>Primeira consulta:</strong> Avaliação inicial gratuita de 30 minutos
+                      <strong>Primeira consulta:</strong> Avaliação inicial de 60 minutos
                     </p>
                   </CardContent>
                 </Card>
@@ -829,17 +874,18 @@ function App() {
 
                 <div className="bg-primary/5 rounded-2xl p-6">
                   <h3 className="font-serif text-xl font-semibold text-foreground mb-3">
-                    Primeira Consulta
+                    Agendamento Online
                   </h3>
                   <p className="text-muted-foreground mb-4">
-                    Na primeira sessão, faremos uma avaliação inicial para entender 
-                    suas necessidades e definir o melhor caminho para o seu tratamento.
+                    Agende sua consulta de forma rápida e segura através do nosso sistema online. 
+                    Escolha data, horário e até mesmo efetue o pagamento antecipado.
                   </p>
                   <Button 
-                    onClick={() => window.open('https://wa.me/5511999999999', '_blank')}
-                    className="btn-primary text-white px-6 py-2 rounded-full"
+                    onClick={() => scrollToSection('agendamento')}
+                    className="btn-primary text-white px-6 py-2 rounded-full flex items-center space-x-2"
                   >
-                    Agendar Agora
+                    <Calendar className="w-4 h-4" />
+                    <span>Agendar Online</span>
                   </Button>
                 </div>
               </div>
