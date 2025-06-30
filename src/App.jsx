@@ -3,9 +3,10 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle } from 'lucide-react'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Play, Pause } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import terapiaCriancasImg from './assets/terapia-criancas-real copy.jpg'
+import terapiaInfantilVideo from './assets/Terapia_Infantil_Criado.mp4'
 import './App.css'
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
     telefone: '',
     mensagem: ''
   })
+
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -34,6 +37,17 @@ function App() {
 
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const toggleVideo = () => {
+    const video = document.getElementById('therapy-video')
+    if (video.paused) {
+      video.play()
+      setIsVideoPlaying(true)
+    } else {
+      video.pause()
+      setIsVideoPlaying(false)
+    }
   }
 
   return (
@@ -63,6 +77,12 @@ function App() {
                 className="text-foreground hover:text-primary transition-colors"
               >
                 Serviços
+              </button>
+              <button 
+                onClick={() => scrollToSection('video')}
+                className="text-foreground hover:text-primary transition-colors"
+              >
+                Vídeo
               </button>
               <button 
                 onClick={() => scrollToSection('contato')}
@@ -323,8 +343,94 @@ function App() {
         </div>
       </section>
 
+      {/* Vídeo Section */}
+      <section id="video" className="section-padding bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="font-serif text-4xl font-bold text-foreground">
+                Conheça Meu Trabalho
+              </h2>
+              <p className="text-xl text-muted-foreground">
+                Veja como a terapia infantil pode transformar a vida das crianças e suas famílias
+              </p>
+            </div>
+            
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl bg-black">
+              <video
+                id="therapy-video"
+                className="w-full h-auto"
+                poster={terapiaCriancasImg}
+                controls={false}
+                preload="metadata"
+                onPlay={() => setIsVideoPlaying(true)}
+                onPause={() => setIsVideoPlaying(false)}
+                onEnded={() => setIsVideoPlaying(false)}
+              >
+                <source src={terapiaInfantilVideo} type="video/mp4" />
+                Seu navegador não suporta o elemento de vídeo.
+              </video>
+              
+              {/* Custom Play Button Overlay */}
+              {!isVideoPlaying && (
+                <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-300 hover:bg-black/30">
+                  <button
+                    onClick={toggleVideo}
+                    className="bg-white/90 hover:bg-white text-primary rounded-full p-6 transition-all duration-300 hover:scale-110 shadow-2xl"
+                  >
+                    <Play className="w-12 h-12 ml-1" />
+                  </button>
+                </div>
+              )}
+              
+              {/* Pause Button when playing */}
+              {isVideoPlaying && (
+                <div className="absolute top-4 right-4">
+                  <button
+                    onClick={toggleVideo}
+                    className="bg-black/50 hover:bg-black/70 text-white rounded-full p-3 transition-all duration-300"
+                  >
+                    <Pause className="w-6 h-6" />
+                  </button>
+                </div>
+              )}
+            </div>
+
+            <div className="mt-8 text-center">
+              <Card className="border-0 shadow-lg bg-primary/5">
+                <CardContent className="p-8">
+                  <h3 className="font-serif text-2xl font-semibold text-foreground mb-4">
+                    Terapia Infantil Especializada
+                  </h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    Através de técnicas lúdicas e adaptadas para cada faixa etária, 
+                    ajudo crianças a desenvolverem habilidades emocionais, sociais e cognitivas. 
+                    O vídeo mostra um pouco do meu trabalho e como a terapia pode ser 
+                    um processo natural e divertido para os pequenos.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-4 text-sm">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Ambiente acolhedor e seguro</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Técnicas baseadas no brincar</span>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-primary rounded-full"></div>
+                      <span>Acompanhamento familiar</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Contato Section */}
-      <section id="contato" className="section-padding bg-white">
+      <section id="contato" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
@@ -440,7 +546,7 @@ function App() {
                     </div>
                   </div>
                   <div className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex-shrink-0 flex items-center justify-center">
                       <Clock className="w-6 h-6 text-primary" />
                     </div>
                     <div>
