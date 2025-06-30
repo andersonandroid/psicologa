@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button.jsx'
 import { Card, CardContent } from '@/components/ui/card.jsx'
 import { Input } from '@/components/ui/input.jsx'
 import { Textarea } from '@/components/ui/textarea.jsx'
-import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X } from 'lucide-react'
+import { Heart, Brain, Users, Phone, Mail, MapPin, Clock, Star, MessageCircle, Menu, X, Download, CheckCircle, Calendar, Shield, Award } from 'lucide-react'
 import psicologaFoto from './assets/psicologa-foto.jpg'
 import './App.css'
 
@@ -312,7 +312,7 @@ function App() {
       {/* Serviços Section */}
       <section id="servicos" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
               <h2 className="font-serif text-4xl font-bold text-foreground">
                 Serviços
@@ -321,9 +321,90 @@ function App() {
                 Oferecemos diferentes modalidades de atendimento para melhor atender suas necessidades
               </p>
             </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {/* Terapia Individual */}
+              <Card className="card-hover border-0 shadow-lg bg-white">
+                <CardContent className="p-8 space-y-6">
+                  <img 
+                    src="https://images.pexels.com/photos/5699456/pexels-photo-5699456.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" 
+                    alt="Terapia Individual - Sessão de terapia em consultório acolhedor" 
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Heart className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-serif text-2xl font-semibold text-foreground">
+                        Terapia Individual
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground">
+                      Sessões personalizadas focadas no seu bem-estar emocional e desenvolvimento pessoal. 
+                      Utilizamos abordagens baseadas em evidências para ajudar você a superar desafios e alcançar seus objetivos.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        <span>Ansiedade e depressão</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        <span>Autoestima e autoconhecimento</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        <span>Relacionamentos interpessoais</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Terapia de Casal */}
+              <Card className="card-hover border-0 shadow-lg bg-white">
+                <CardContent className="p-8 space-y-6">
+                  <img 
+                    src="https://images.pexels.com/photos/8471919/pexels-photo-8471919.jpeg?auto=compress&cs=tinysrgb&w=800&h=400&fit=crop" 
+                    alt="Terapia de Casal - Casal em sessão de terapia" 
+                    className="w-full h-48 object-cover rounded-lg"
+                  />
+                  <div className="space-y-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Users className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-serif text-2xl font-semibold text-foreground">
+                        Terapia de Casal
+                      </h3>
+                    </div>
+                    <p className="text-muted-foreground">
+                      Fortalecimento dos vínculos afetivos através de técnicas especializadas em comunicação 
+                      e resolução de conflitos. Ajudamos casais a reconstruir a intimidade e confiança.
+                    </p>
+                    <div className="space-y-2">
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        <span>Comunicação efetiva</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        <span>Resolução de conflitos</span>
+                      </div>
+                      <div className="flex items-center space-x-2 text-sm">
+                        <CheckCircle className="w-4 h-4 text-primary" />
+                        <span>Reconstrução da intimidade</span>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Acompanhamento Psicopedagógico - Card Principal */}
             <div className="flex justify-center">
-              {/* Card: Acompanhamento Psicopedagógico Integrado */}
-              <Card className="card-hover border-0 shadow-lg bg-white max-w-2xl">
+              <Card className="card-hover border-0 shadow-lg bg-white max-w-4xl">
                 <CardContent className="p-8 space-y-6">
                   <img 
                     src="https://images.pexels.com/photos/8613089/pexels-photo-8613089.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop" 
@@ -331,9 +412,14 @@ function App() {
                     className="w-full h-64 object-cover rounded-lg mb-4"
                   />
                   <div className="space-y-4">
-                    <h3 className="font-serif text-2xl font-semibold text-foreground">
-                      Acompanhamento Psicopedagógico Integrado: Escola e Família de Mãos Dadas
-                    </h3>
+                    <div className="flex items-center space-x-3">
+                      <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                        <Brain className="w-6 h-6 text-primary" />
+                      </div>
+                      <h3 className="font-serif text-2xl font-semibold text-foreground">
+                        Acompanhamento Psicopedagógico Integrado: Escola e Família de Mãos Dadas
+                      </h3>
+                    </div>
                     <p className="text-muted-foreground">
                       No desenvolvimento de uma criança, a parceria entre a família e a escola é fundamental. Na Clínica Michelle Pitangueira, vamos além do atendimento individual, oferecendo um acompanhamento psicopedagógico estratégico e conectado, que garante uma visão 360° do universo da criança.
                     </p>
@@ -423,8 +509,99 @@ function App() {
         </div>
       </section>
 
+      {/* Guia Gratuito Section */}
+      <section className="section-padding bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <Card className="border-0 shadow-xl bg-gradient-to-r from-primary/5 to-accent/5">
+              <CardContent className="p-8 md:p-12">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  <div className="space-y-6">
+                    <div className="space-y-4">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-12 h-12 bg-accent/20 rounded-full flex items-center justify-center">
+                          <Download className="w-6 h-6 text-accent" />
+                        </div>
+                        <h3 className="font-serif text-2xl font-bold text-foreground">
+                          Guia Gratuito para Pais
+                        </h3>
+                      </div>
+                      <h4 className="text-xl font-semibold text-primary">
+                        "Foco na Ajuda e no Aprendizado"
+                      </h4>
+                      <p className="text-muted-foreground">
+                        Um guia prático e completo para ajudar pais a compreenderem melhor o desenvolvimento 
+                        emocional de seus filhos e como apoiá-los em cada fase da vida.
+                      </p>
+                    </div>
+                    
+                    <div className="space-y-3">
+                      <h5 className="font-semibold text-foreground">O que você vai encontrar:</h5>
+                      <div className="space-y-2">
+                        <div className="flex items-center space-x-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                          <span>Técnicas de comunicação efetiva com crianças</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                          <span>Como identificar sinais de ansiedade infantil</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                          <span>Estratégias para fortalecer a autoestima</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm">
+                          <CheckCircle className="w-4 h-4 text-primary" />
+                          <span>Atividades práticas para o dia a dia</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <Button 
+                      onClick={() => window.open('/src/assets/Guia Rápido_ Foco na Ajuda e no Aprendizado para Pais.pdf', '_blank')}
+                      className="btn-primary text-white px-8 py-3 rounded-full text-lg w-full md:w-auto"
+                    >
+                      <Download className="w-5 h-5 mr-2" />
+                      Baixar Guia Gratuito
+                    </Button>
+                  </div>
+                  
+                  <div className="relative">
+                    <div className="bg-white rounded-2xl p-6 shadow-lg">
+                      <div className="space-y-4">
+                        <div className="flex items-center space-x-3">
+                          <Award className="w-8 h-8 text-primary" />
+                          <div>
+                            <h6 className="font-semibold text-foreground">Material Exclusivo</h6>
+                            <p className="text-sm text-muted-foreground">Desenvolvido por especialista</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Shield className="w-8 h-8 text-primary" />
+                          <div>
+                            <h6 className="font-semibold text-foreground">100% Gratuito</h6>
+                            <p className="text-sm text-muted-foreground">Sem custos ou compromissos</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                          <Calendar className="w-8 h-8 text-primary" />
+                          <div>
+                            <h6 className="font-semibold text-foreground">Acesso Imediato</h6>
+                            <p className="text-sm text-muted-foreground">Download instantâneo</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Contato Section */}
-      <section id="contato" className="section-padding bg-white">
+      <section id="contato" className="section-padding hero-gradient">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <div className="text-center space-y-4 mb-12">
